@@ -1,4 +1,7 @@
 {
-  "username": "hoang",
-  "password": "hoang"
+  "user":
+  {
+    "username": "hoang",
+    "password": "hoang"
+  }
 }
