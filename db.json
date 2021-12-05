@@ -2,5 +2,15 @@
   "user": {
     "username": "hoang",
     "password": "hoang"
-  }
+  },
+  "course": [
+    {
+      "id": 1,
+      "name": "First course"
+    },
+    {
+      "id": 2,
+      "name": "Second course"
+    }
+  ]
 }
