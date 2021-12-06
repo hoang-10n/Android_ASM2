@@ -1,0 +1,138 @@
+{
+  "user": [
+    {
+      "uId": "V1",
+      "uName": "Volunteer Vol1",
+      "uEmail": "volunteer1@m.com",
+      "uPhone": "00000",
+      "uUsername": "volunteer1",
+      "uPassword": "volunteer1",
+      "uRole": "volunteer"
+    },
+    {
+      "uId": "V2",
+      "uName": "Volunteer Vol2",
+      "uEmail": "volunteer2@m.com",
+      "uPhone": "00000",
+      "uUsername": "volunteer2",
+      "uPassword": "volunteer2",
+      "uRole": "volunteer"
+    },
+    {
+      "uId": "V3",
+      "uName": "Volunteer Vol3",
+      "uEmail": "volunteer3@m.com",
+      "uPhone": "00000",
+      "uUsername": "volunteer3",
+      "uPassword": "volunteer3",
+      "uRole": "volunteer"
+    },
+    {
+      "uId": "V4",
+      "uName": "Volunteer Vol4",
+      "uEmail": "volunteer4@m.com",
+      "uPhone": "00000",
+      "uUsername": "volunteer4",
+      "uPassword": "volunteer4",
+      "uRole": "volunteer"
+    },
+    {
+      "uId": "V5",
+      "uName": "Volunteer Vol5",
+      "uEmail": "volunteer5@m.com",
+      "uPhone": "00000",
+      "uUsername": "volunteer5",
+      "uPassword": "volunteer5",
+      "uRole": "volunteer"
+    },
+    {
+      "uId": "V6",
+      "uName": "Volunteer Vol6",
+      "uEmail": "volunteer6@m.com",
+      "uPhone": "00000",
+      "uUsername": "volunteer6",
+      "uPassword": "volunteer6",
+      "uRole": "volunteer"
+    },
+    {
+      "uId": "L1",
+      "uName": "Leader Lea1",
+      "uEmail": "leader1@m.com",
+      "uPhone": "00000",
+      "uUsername": "leader1",
+      "uPassword": "leader1",
+      "uRole": "leader"
+    },
+    {
+      "uId": "L2",
+      "uName": "Leader Lea2",
+      "uEmail": "leader2@m.com",
+      "uPhone": "00000",
+      "uUsername": "leader2",
+      "uPassword": "leader2",
+      "uRole": "leader"
+    },
+    {
+      "uId": "L3",
+      "uName": "Leader Lea3",
+      "uEmail": "leader3@m.com",
+      "uPhone": "00000",
+      "uUsername": "leader3",
+      "uPassword": "leader3",
+      "uRole": "leader"
+    },
+    {
+      "uId": "A1",
+      "uName": "Admin Adm1",
+      "uEmail": "admin1@m.com",
+      "uPhone": "00000",
+      "uUsername": "admin1",
+      "uPassword": "admin1",
+      "uRole": "admin"
+    }
+  ],
+  "zones": [
+    {
+      "zid": "Z1",
+      "zName": "Zone 1",
+      "zLat": 10.729515,
+      "zLong": 106.698513,
+      "zCreated": "2021-11-30",
+      "zClosed": "2021-12-3",
+      "zUpdated": "2021-12-4",
+      "zMaxQuantity": 100,
+      "zDescription": "This is description 1.",
+      "zLeader": "L1",
+      "zHour": 3,
+      "zStartDate": "2021-12-06 09:30"
+    },
+    {
+      "zid": "Z2",
+      "zName": "Zone 2",
+      "zLat": 10.730833,
+      "zLong": 106.696238,
+      "zCreated": "2021-11-13",
+      "zClosed": "2021-11-23",
+      "zUpdated": "2021-12-1",
+      "zMaxQuantity": 100,
+      "zDescription": "This is description 2.",
+      "zLeader": "L2",
+      "zHour": 3,
+      "zStartDate": "2021-12-06 09:30"
+    },
+    {
+      "zid": "Z3",
+      "zName": "Zone 3",
+      "zLat": 10.729625,
+      "zLong": 106.69157,
+      "zCreated": "2021-11-25",
+      "zClosed": "2021-12-1",
+      "zUpdated": "2021-12-10",
+      "zMaxQuantity": 100,
+      "zDescription": "This is description 3.",
+      "zLeader": "L3",
+      "zHour": 3,
+      "zStartDate": "2021-12-06 09:30"
+    }
+  ]
+}

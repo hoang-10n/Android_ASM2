@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+testing.json
+ngrok.exe

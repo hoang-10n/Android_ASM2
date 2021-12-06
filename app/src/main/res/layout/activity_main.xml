@@ -7,14 +7,44 @@
     android:background="@drawable/layout_background"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/main_login_btn"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:text="Login"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toTopOf="@+id/main_intro"
+        app:layout_constraintEnd_toStartOf="@+id/main_register_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_frag_password_input" />
+
+    <Button
+        android:id="@+id/main_register_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:text="Register"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toTopOf="@+id/main_intro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/main_login_btn"
+        app:layout_constraintTop_toBottomOf="@+id/login_frag_password_input" />
+
     <FrameLayout
         android:id="@+id/main_frag_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/main_intro"
+        app:layout_constraintBottom_toTopOf="@+id/main_register_btn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
 
