@@ -4,27 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/layout_background"
     tools:context=".HomeActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/home_map_btn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello I'm Hoang"
+        android:text="Zone map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/home_zone_btn" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/just_a_test" />
+        app:layout_constraintStart_toEndOf="@+id/home_map_btn" />
 
-    <ImageView
-        android:id="@+id/just_a_test"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/home_zone_btn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="All zones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/home_map_btn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/test_adapter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10sp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/home_map_btn"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ListView>
 </androidx.constraintlayout.widget.ConstraintLayout>

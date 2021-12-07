@@ -1,5 +1,6 @@
 package com.android.asm2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.asm2.model.User;
+
 public class LoginFrag extends Fragment {
     EditText usernameInput, passwordInput;
     TextView errorTxt;
@@ -18,15 +21,6 @@ public class LoginFrag extends Fragment {
     public LoginFrag() {
         // Required empty public constructor
     }
-
-//    public static LoginFrag newInstance() {
-//        LoginFrag fragment = new LoginFrag();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,15 +38,21 @@ public class LoginFrag extends Fragment {
     }
 
     public void enterApp() {
+        UserDatabase userDatabase = new UserDatabase(getContext());
         String usernameStr = usernameInput.getText().toString();
         String passwordStr = passwordInput.getText().toString();
+        User user = userDatabase.getUserByUsername(usernameStr);
         if (usernameStr.equals("") || passwordStr.equals("")) {
             errorTxt.setText("Fill all fields");
-        } else if (!usernameStr.equals("admin") && !passwordStr.equals("admin")) {
+        } else if (user == null) {
             errorTxt.setText("Account does not exist");
+        } else if (!user.getPassword().equals(passwordStr)) {
+            errorTxt.setText("Wrong password");
         } else {
             errorTxt.setText("");
+            Intent intent = new Intent(requireContext(), HomeActivity.class);
+            intent.putExtra("username", usernameStr);
+            requireActivity().startActivity(intent);
         }
-        Toast.makeText(requireContext(), "Hello login", Toast.LENGTH_SHORT).show();
     }
 }

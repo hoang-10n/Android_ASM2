@@ -62,6 +62,7 @@ public class RegisterFrag extends Fragment {
     }
 
     public void enterApp() {
+        UserDatabase userDatabase = new UserDatabase(getContext());
         String usernameStr = usernameInput.getText().toString();
         String passwordStr = passwordInput.getText().toString();
         String emailStr = emailInput.getText().toString();
@@ -73,13 +74,17 @@ public class RegisterFrag extends Fragment {
             errorTxt.setText("Fill all fields");
         } else if (!confirmStr.equals(passwordStr)) {
             errorTxt.setText("Confirmed password doesn't match");
+        } else if (userDatabase.getUserByUsername(usernameStr) != null) {
+            errorTxt.setText("Account already existed");
+        } else if (userDatabase.getUserByEmail(emailStr) != null) {
+            errorTxt.setText("Email already used");
         } else {
             errorTxt.setText("");
             User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, isVolunteer ? "volunteer" : "leader");
+//            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, "admin");
+            userDatabase.addUser(user);
             Intent intent = new Intent(requireContext(), HomeActivity.class);
-            JsonObject jsonObject = (JsonObject) new Gson().toJsonTree(user);
-            jsonObject.remove("password");
-            intent.putExtra("user", jsonObject.toString());
+            intent.putExtra("username", usernameStr);
             requireActivity().startActivity(intent);
         }
     }
