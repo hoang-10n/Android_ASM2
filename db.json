@@ -89,9 +89,9 @@
       "longitude": 106.698513,
       "createdDate": "2021-11-30",
       "closedDate": "2021-12-3",
-      "maxQuantity": 100,
+      "quantity": 100,
       "description": "This is description 1.",
-      "leaderUsername": "leader1",
+      "leader": "leader1",
       "duration": 3,
       "startDate": "2021-12-06 09:30"
     },
@@ -102,9 +102,9 @@
       "longitude": 106.696238,
       "createdDate": "2021-11-13",
       "closedDate": "2021-11-23",
-      "maxQuantity": 100,
+      "quantity": 100,
       "description": "This is description 2.",
-      "leaderUsername": "leader2",
+      "leader": "leader2",
       "duration": 3,
       "startDate": "2021-12-06 09:30"
     },
@@ -115,9 +115,9 @@
       "longitude": 106.69157,
       "createdDate": "2021-11-25",
       "closedDate": "2021-12-1",
-      "maxQuantity": 100,
+      "quantity": 100,
       "description": "This is description 3.",
-      "leaderUsername": "leader3",
+      "leader": "leader3",
       "duration": 3,
       "startDate": "2021-12-06 09:30"
     }
