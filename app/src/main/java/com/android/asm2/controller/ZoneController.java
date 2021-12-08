@@ -1,8 +1,8 @@
-package com.android.asm2;
+package com.android.asm2.controller;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.model.Zone;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

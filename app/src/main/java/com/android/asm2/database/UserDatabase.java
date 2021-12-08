@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;

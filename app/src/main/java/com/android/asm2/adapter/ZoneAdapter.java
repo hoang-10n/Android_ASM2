@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.android.asm2.R;
+import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
@@ -53,12 +55,13 @@ public class ZoneAdapter extends BaseAdapter {
         Zone zone = (Zone) getItem(i);
         nameTxt.setText(zone.getName());
         leaderTxt.setText(zone.getLeader());
-        closedTxt.setText(zone.getClosedDate());
-        durationTxt.setText(String.valueOf(zone.getDuration()));
-        startTxt.setText(zone.getStartDate());
+        closedTxt.setText("Closed: " + zone.getClosedDate());
+        durationTxt.setText("Duration: " + zone.getDuration() + "hrs");
+        startTxt.setText("Start: " + zone.getStartDate().substring(5));
         mapBtn.setOnClickListener(v -> {
-            Intent intent = new Intent();
+            Intent intent = new Intent(context, ZoneInfoActivity.class);
             intent.putExtra("id", zone.getId());
+            context.startActivity(intent);
         });
 
         return view;

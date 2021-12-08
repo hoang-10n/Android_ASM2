@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.asm2.activity.HomeActivity;
+import com.android.asm2.R;
+import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 
 public class RegisterFrag extends Fragment {

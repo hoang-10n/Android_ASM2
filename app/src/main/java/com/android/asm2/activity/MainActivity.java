@@ -1,10 +1,16 @@
-package com.android.asm2;
+package com.android.asm2.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.android.asm2.R;
+import com.android.asm2.controller.UserController;
+import com.android.asm2.controller.ZoneController;
+import com.android.asm2.fragment.LoginFrag;
+import com.android.asm2.fragment.RegisterFrag;
 
 public class MainActivity extends AppCompatActivity {
     private boolean isLogin = true;

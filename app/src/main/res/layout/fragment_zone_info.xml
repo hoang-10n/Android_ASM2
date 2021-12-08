@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ZoneInfoFrag">
+
+    <TextView
+        android:id="@+id/zone_info_frag_duration_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DURATION"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_delete_btn"
+        app:layout_constraintStart_toEndOf="@+id/zone_info_frag_quantity_txt" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_closed_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CLOSED"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/zone_info_frag_start_txt"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_created_txt" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_start_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/zone_info_frag_quantity_txt"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_closed_txt" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_created_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREATED"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/zone_info_frag_closed_txt"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_leader_txt" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_quantity_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QUANTITY"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/zone_info_frag_start_txt" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_leader_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="LEADER"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/zone_info_frag_name_txt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/zone_info_frag_name_txt"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_name_txt" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="NAME"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_map_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_description_txt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/adapter_border"
+        android:ellipsize="none"
+        android:gravity="top|left"
+        android:text="THIS IS THE LONGEST DESCRIPTION I HAVE EVER SEEN. IT STRETCHES FROM HERE TO HERE"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/zone_info_frag_enter_btn"
+        app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_delete_btn"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_description_tag_txt" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <ImageButton
+        android:id="@+id/zone_info_frag_map_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@color/cardview_shadow_end_color"
+        android:contentDescription="View map"
+        android:src="@android:drawable/ic_dialog_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_name_txt"
+        app:tint="@color/black" />
+
+    <ImageButton
+        android:id="@+id/zone_info_frag_edit_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@color/cardview_shadow_end_color"
+        android:contentDescription="Edit"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_map_btn"
+        app:tint="@color/black" />
+
+    <ImageButton
+        android:id="@+id/zone_info_frag_delete_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@color/cardview_shadow_end_color"
+        android:contentDescription="Delete"
+        android:src="@android:drawable/ic_menu_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_edit_btn"
+        app:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/zone_info_frag_description_tag_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Description:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+    <Button
+        android:id="@+id/zone_info_frag_enter_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter this zone"
+        android:textColor="@color/white"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_leave_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/zone_info_frag_leave_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leave this zone"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/design_default_color_error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/zone_info_frag_enter_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

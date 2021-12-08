@@ -15,10 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Asm2">
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.ZoneInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
