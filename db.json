@@ -103,7 +103,8 @@
       "description": "This is description 1.",
       "leader": "leader1",
       "duration": 3,
-      "startDate": "2021-12-06 09:30"
+      "startDate": "2021-12-06",
+      "startTime": "09:30"
     },
     {
       "id": "Z2",
@@ -116,7 +117,8 @@
       "description": "This is description 2.",
       "leader": "leader2",
       "duration": 3,
-      "startDate": "2021-12-06 09:30"
+      "startDate": "2021-12-06",
+      "startTime": "07:30"
     },
     {
       "id": "Z3",
@@ -129,7 +131,8 @@
       "description": "This is description 3.",
       "leader": "leader3",
       "duration": 3,
-      "startDate": "2021-12-06 09:30"
+      "startDate": "2021-12-06",
+      "startTime": "08:30"
     }
   ]
 }
