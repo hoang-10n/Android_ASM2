@@ -14,7 +14,13 @@ import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.model.Zone;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 public class ZoneAdapter extends BaseAdapter {
     private Context context;
@@ -48,16 +54,30 @@ public class ZoneAdapter extends BaseAdapter {
         TextView nameTxt = view.findViewById(R.id.zone_adapter_name_txt);
         TextView leaderTxt = view.findViewById(R.id.zone_adapter_leader_txt);
         TextView closedTxt = view.findViewById(R.id.zone_adapter_closed_txt);
-        TextView durationTxt = view.findViewById(R.id.zone_adapter_duration_txt);
+        TextView timeTxt = view.findViewById(R.id.zone_adapter_time_txt);
         TextView startTxt = view.findViewById(R.id.zone_adapter_start_txt);
         ImageButton mapBtn = view.findViewById(R.id.zone_adapter_map_btn);
 
         Zone zone = (Zone) getItem(i);
+        String startTimeStr = zone.getStartTime();
+        String endTimeStr = "";
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.US);
+            Date date = dateFormat.parse(startTimeStr);
+            Calendar calendar = Calendar.getInstance();
+            assert date != null;
+            calendar.setTime(date);
+            calendar.add(Calendar.MINUTE, (int) (zone.getDuration() * 60));
+            endTimeStr = dateFormat.format(calendar.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         nameTxt.setText(zone.getName());
         leaderTxt.setText(zone.getLeader());
         closedTxt.setText("Closed: " + zone.getClosedDate());
-        durationTxt.setText("Duration: " + zone.getDuration() + "hrs");
-        startTxt.setText("Start: " + zone.getStartDate().substring(5));
+        timeTxt.setText(startTimeStr + " - " + endTimeStr);
+        startTxt.setText("Start: " + zone.getStartDate());
         mapBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ZoneInfoActivity.class);
             intent.putExtra("id", zone.getId());

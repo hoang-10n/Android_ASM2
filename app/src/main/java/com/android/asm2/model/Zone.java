@@ -11,11 +11,12 @@ public class Zone {
     private String createdDate;
     private String closedDate;
     private String startDate;
+    private String startTime;
     private String description;
 
     public Zone(String id, String name, float latitude, float longitude, float duration,
                 int quantity, String leader, String createdDate, String closedDate,
-                String startDate, String description) {
+                String startDate, String startTime, String description) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
@@ -26,6 +27,7 @@ public class Zone {
         this.createdDate = createdDate;
         this.closedDate = closedDate;
         this.startDate = startDate;
+        this.startTime = startTime;
         this.description = description;
     }
 
@@ -107,6 +109,14 @@ public class Zone {
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public String getDescription() {

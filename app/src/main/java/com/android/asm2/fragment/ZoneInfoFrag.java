@@ -43,7 +43,7 @@ public class ZoneInfoFrag extends Fragment {
         quantityTxt.setText(zone.getQuantity() + " volunteers");
         createdTxt.setText("Created: " + zone.getCreatedDate());
         closedTxt.setText("Closed: " + zone.getClosedDate());
-        startTxt.setText("Start: " + zone.getStartDate());
+        startTxt.setText("Start: " + zone.getStartDate() + " at " + zone.getStartTime());
         leaderTxt.setText("created by " + zone.getLeader());
         descriptionTxt.setText(" - " + zone.getDescription());
 

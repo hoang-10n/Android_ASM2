@@ -23,11 +23,11 @@ public class ZoneInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String zoneId = (String) intent.getExtras().get("id");
-//
-//        ZoneDatabase database = new ZoneDatabase(this);
-//        Zone zone = database.getZoneById(zoneId);
-        ZoneEditFrag zoneInfoFrag = new ZoneEditFrag();
-//        zoneInfoFrag.setZone(zone);
+
+        ZoneDatabase database = new ZoneDatabase(this);
+        Zone zone = database.getZoneById(zoneId);
+        ZoneInfoFrag zoneInfoFrag = new ZoneInfoFrag();
+        zoneInfoFrag.setZone(zone);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.zone_info_frag_container, zoneInfoFrag);

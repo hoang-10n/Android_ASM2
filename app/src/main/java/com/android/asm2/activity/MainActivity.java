@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
         UserController.init(this);
         UserController.getAllUsers();
-//        ZoneController.init(this);
-//        ZoneController.getAllZones();
+        ZoneController.init(this);
+        ZoneController.getAllZones();
 
         LoginFrag loginFrag = new LoginFrag();
         RegisterFrag registerFrag = new RegisterFrag();

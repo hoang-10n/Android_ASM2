@@ -24,7 +24,8 @@ public class ZoneDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS zone(id TEXT PRIMARY KEY, name TEXT, " +
                 "latitude REAL, longitude REAL, duration REAL, quantity INTEGER, leader TEXT, " +
-                "created_date TEXT, closed_date TEXT, start_date TEXT, description TEXT)");
+                "created_date TEXT, closed_date TEXT, start_date TEXT, start_time TEXT, " +
+                "description TEXT)");
     }
 
     @Override
@@ -42,7 +43,8 @@ public class ZoneDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         @SuppressLint("Recycle") Cursor cursor = db.query("zone",
                 new String[]{"id", "name", "latitude", "longitude", "duration", "quantity",
-                        "leader", "created_date", "closed_date", "start_date", "description"},
+                        "leader", "created_date", "closed_date", "start_date", "start_time",
+                        "description"},
                 "id = ?",
                 new String[]{id}, null, null, null);
         if (cursor != null) cursor.moveToFirst();
@@ -52,7 +54,7 @@ public class ZoneDatabase extends SQLiteOpenHelper {
                 Float.parseFloat(cursor.getString(2)), Float.parseFloat(cursor.getString(3)),
                 Float.parseFloat(cursor.getString(4)), Integer.parseInt(cursor.getString(5)),
                 cursor.getString(6), cursor.getString(7), cursor.getString(8),
-                cursor.getString(9), cursor.getString(10));
+                cursor.getString(9), cursor.getString(10), cursor.getString(11));
     }
 
     public void updateZone(Zone zone) {
@@ -65,6 +67,7 @@ public class ZoneDatabase extends SQLiteOpenHelper {
         values.put("quantity", zone.getQuantity());
         values.put("closed_date", zone.getClosedDate());
         values.put("start_date", zone.getStartDate());
+        values.put("start_time", zone.getStartTime());
         values.put("description", zone.getDescription());
         db.update("zone", values, "id = ?",
                 new String[]{String.valueOf(zone.getId())});
@@ -84,6 +87,7 @@ public class ZoneDatabase extends SQLiteOpenHelper {
         values.put("closed_date", zone.getClosedDate());
         values.put("created_date", zone.getCreatedDate());
         values.put("start_date", zone.getStartDate());
+        values.put("start_time", zone.getStartTime());
         values.put("description", zone.getDescription());
         db.insert("zone", null, values);
         db.close();
@@ -115,7 +119,7 @@ public class ZoneDatabase extends SQLiteOpenHelper {
                         Float.parseFloat(cursor.getString(4)),
                         Integer.parseInt(cursor.getString(5)),
                         cursor.getString(6), cursor.getString(7), cursor.getString(8),
-                        cursor.getString(9), cursor.getString(10)));
+                        cursor.getString(9), cursor.getString(10), cursor.getString(11)));
             } while (cursor.moveToNext());
         }
         cursor.close();

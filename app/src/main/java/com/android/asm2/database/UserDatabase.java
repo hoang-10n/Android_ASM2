@@ -53,7 +53,7 @@ public class UserDatabase extends SQLiteOpenHelper {
     public User getUserByUsername(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         @SuppressLint("Recycle") Cursor cursor = db.query("user",
-                new String[]{"username", "password", "email", "phone", "name", "role"},
+                new String[]{"username", "password", "email", "phone", "name", "role", "joined_zones"},
                 "username = ?",
                 new String[]{username}, null, null, null);
         if (cursor != null) cursor.moveToFirst();
