@@ -15,7 +15,7 @@ import com.android.asm2.model.Zone;
 public class ZoneInfoFrag extends Fragment {
     private Zone zone = null;
 
-    public void setZone(Zone zone) {
+    public ZoneInfoFrag(Zone zone) {
         this.zone = zone;
     }
 

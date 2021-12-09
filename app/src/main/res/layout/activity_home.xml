@@ -37,13 +37,25 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/zone_list_frag_popup_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter and sort popup"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <FrameLayout
         android:id="@+id/home_frag_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10sp"
         app:layout_constraintBottom_toTopOf="@+id/home_map_btn"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/zone_list_frag_popup_btn">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

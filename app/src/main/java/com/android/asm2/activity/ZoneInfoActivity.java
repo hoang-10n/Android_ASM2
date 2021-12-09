@@ -26,8 +26,7 @@ public class ZoneInfoActivity extends AppCompatActivity {
 
         ZoneDatabase database = new ZoneDatabase(this);
         Zone zone = database.getZoneById(zoneId);
-        ZoneInfoFrag zoneInfoFrag = new ZoneInfoFrag();
-        zoneInfoFrag.setZone(zone);
+        ZoneInfoFrag zoneInfoFrag = new ZoneInfoFrag(zone);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.zone_info_frag_container, zoneInfoFrag);

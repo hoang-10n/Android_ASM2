@@ -11,13 +11,14 @@
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/activity_zone_info.xml" value="0.23641304347826086" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/adapter_zone.xml" value="0.4" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/block_zone.xml" value="0.536" />
+        <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/custom_spinner_adapter.xml" value="0.13177083333333334" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/fragment_login.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/fragment_main.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/fragment_register.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/fragment_zone_edit.xml" value="0.4" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/fragment_zone_info.xml" value="0.4" />
         <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/fragment_zone_list.xml" value="0.21739130434782608" />
-        <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/popup_zone_param.xml" value="0.20108695652173914" />
+        <entry key="..\:/Users/hoang/Desktop/Android_ASM2/app/src/main/res/layout/popup_zone_param.xml" value="0.5191489361702127" />
       </map>
     </option>
   </component>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@drawable/layout_background"
+    tools:layout_editor_absoluteX="59dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <TextView
+        android:id="@+id/popup_zone_list_filter_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter zones"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_zone_list_sort_spinner" />
+
+    <TextView
+        android:id="@+id/popup_zone_list_sort_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort params"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/popup_zone_list_sort_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <TextView
+        android:id="@+id/popup_zone_list_search_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search fields"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/popup_zone_list_sort_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_zone_list_search_txt">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Zone name"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/popup_zone_list_name_input"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_margin="10sp"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Zone leader"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/popup_zone_list_leader_input"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_margin="10sp"
+                android:ems="10"
+                android:hint="ID"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="16sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/popup_zone_list_apply_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_zone_list_filter_txt">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/popup_zone_list_join_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Show joined"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/popup_zone_list_closed_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Hide closed"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/popup_zone_list_leading_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Show leading"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/popup_zone_list_started_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="Hide started"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/popup_zone_list_apply_btn"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/popup_zone_list_reset_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+    <Button
+        android:id="@+id/popup_zone_list_reset_btn"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:textColor="@color/white"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/popup_zone_list_close_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/popup_zone_list_apply_btn"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+    <Button
+        android:id="@+id/popup_zone_list_close_btn"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:textColor="@color/white"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/popup_zone_list_reset_btn"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+    <ImageButton
+        android:id="@+id/popup_zone_list_sort_direction_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Sort direction"
+        app:layout_constraintBottom_toTopOf="@+id/popup_zone_list_sort_spinner"
+        app:layout_constraintStart_toEndOf="@+id/popup_zone_list_sort_txt"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:srcCompat="@android:drawable/arrow_up_float"
+        app:tint="@color/black" />
+
+    <Spinner
+        android:id="@+id/popup_zone_list_sort_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/adapter_border"
+        android:contentDescription="Sort params"
+        android:popupBackground="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/popup_zone_list_filter_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_zone_list_sort_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
