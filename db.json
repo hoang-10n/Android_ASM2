@@ -6,7 +6,8 @@
       "phone": "00000",
       "username": "volunteer1",
       "password": "volunteer1",
-      "role": "volunteer"
+      "role": "volunteer",
+      "joinedZones": ["Z1", "Z2", "Z3"]
     },
     {
       "name": "Volunteer Vol2",
@@ -14,7 +15,8 @@
       "phone": "00000",
       "username": "volunteer2",
       "password": "volunteer2",
-      "role": "volunteer"
+      "role": "volunteer",
+      "joinedZones": ["Z1"]
     },
     {
       "name": "Volunteer Vol3",
@@ -22,7 +24,8 @@
       "phone": "00000",
       "username": "volunteer3",
       "password": "volunteer3",
-      "role": "volunteer"
+      "role": "volunteer",
+      "joinedZones": ["Z1", "Z3"]
     },
     {
       "name": "Volunteer Vol4",
@@ -30,7 +33,8 @@
       "phone": "00000",
       "username": "volunteer4",
       "password": "volunteer4",
-      "role": "volunteer"
+      "role": "volunteer",
+      "joinedZones": ["Z3"]
     },
     {
       "name": "Volunteer Vol5",
@@ -38,7 +42,8 @@
       "phone": "00000",
       "username": "volunteer5",
       "password": "volunteer5",
-      "role": "volunteer"
+      "role": "volunteer",
+      "joinedZones": []
     },
     {
       "name": "Volunteer Vol6",
@@ -46,7 +51,8 @@
       "phone": "00000",
       "username": "volunteer6",
       "password": "volunteer6",
-      "role": "volunteer"
+      "role": "volunteer",
+      "joinedZones": ["Z3", "Z2"]
     },
     {
       "name": "Leader Lea1",
@@ -54,7 +60,8 @@
       "phone": "00000",
       "username": "leader1",
       "password": "leader1",
-      "role": "leader"
+      "role": "leader",
+      "joinedZones": ["Z2"]
     },
     {
       "name": "Leader Lea2",
@@ -62,7 +69,8 @@
       "phone": "00000",
       "username": "leader2",
       "password": "leader2",
-      "role": "leader"
+      "role": "leader",
+      "joinedZones": ["Z3", "Z1"]
     },
     {
       "name": "Leader Lea3",
@@ -70,15 +78,17 @@
       "phone": "00000",
       "username": "leader3",
       "password": "leader3",
-      "role": "leader"
+      "role": "leader",
+      "joinedZones": []
     },
     {
       "name": "Admin Adm1",
       "email": "admin1@m.com",
       "phone": "00000",
-      "username": "admin1",
-      "password": "admin1",
-      "role": "admin"
+      "username": "a1",
+      "password": "a1",
+      "role": "admin",
+      "joinedZones": []
     }
   ],
   "zones": [

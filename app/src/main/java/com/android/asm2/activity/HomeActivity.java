@@ -1,14 +1,15 @@
 package com.android.asm2.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.android.asm2.R;
 import com.android.asm2.adapter.ZoneAdapter;
 import com.android.asm2.database.ZoneDatabase;
+import com.android.asm2.fragment.ZoneListFrag;
 import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
@@ -20,11 +21,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ZoneDatabase database = new ZoneDatabase(this);
-        ArrayList<Zone> zoneArrayList = database.getAllZones();
-        Log.d("TAG", zoneArrayList.toString());
-        ZoneAdapter adapter = new ZoneAdapter(this, zoneArrayList);
-        ListView view = findViewById(R.id.test_adapter);
-        view.setAdapter(adapter);
+        ZoneListFrag zoneListFrag = new ZoneListFrag();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.home_frag_container, zoneListFrag);
+        ft.commit();
     }
 }

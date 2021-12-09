@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UserController.init(this);
-        UserController.getAllUsers();
-        ZoneController.init(this);
-        ZoneController.getAllZones();
+//        UserController.init(this);
+//        UserController.getAllUsers();
+//        ZoneController.init(this);
+//        ZoneController.getAllZones();
 
         LoginFrag loginFrag = new LoginFrag();
         RegisterFrag registerFrag = new RegisterFrag();

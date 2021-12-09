@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.android.asm2.R;
 import com.android.asm2.database.ZoneDatabase;
+import com.android.asm2.fragment.ZoneEditFrag;
 import com.android.asm2.fragment.ZoneInfoFrag;
 import com.android.asm2.model.Zone;
 
@@ -22,11 +23,11 @@ public class ZoneInfoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String zoneId = (String) intent.getExtras().get("id");
-
-        ZoneDatabase database = new ZoneDatabase(this);
-        Zone zone = database.getZoneById(zoneId);
-        ZoneInfoFrag zoneInfoFrag = new ZoneInfoFrag();
-        zoneInfoFrag.setZone(zone);
+//
+//        ZoneDatabase database = new ZoneDatabase(this);
+//        Zone zone = database.getZoneById(zoneId);
+        ZoneEditFrag zoneInfoFrag = new ZoneEditFrag();
+//        zoneInfoFrag.setZone(zone);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.zone_info_frag_container, zoneInfoFrag);
