@@ -7,14 +7,16 @@ public class User {
     private String phone;
     private String name;
     private String role;
+    private String[] joinedZones;
 
-    public User(String username, String password, String email, String phone, String name, String role) {
+    public User(String username, String password, String email, String phone, String name, String role, String[] joinedZones) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.name = name;
         this.role = role;
+        this.joinedZones = joinedZones;
     }
 
     public String getRole() {
@@ -63,5 +65,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String[] getJoinedZones() {
+        return joinedZones;
+    }
+
+    public void setJoinedZones(String[] joinedZones) {
+        this.joinedZones = joinedZones;
     }
 }

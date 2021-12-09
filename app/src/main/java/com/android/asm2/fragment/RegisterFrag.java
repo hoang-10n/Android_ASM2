@@ -27,15 +27,6 @@ public class RegisterFrag extends Fragment {
         // Required empty public constructor
     }
 
-//    public static RegisterFrag newInstance(String param1, String param2) {
-//        RegisterFrag fragment = new RegisterFrag();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +71,8 @@ public class RegisterFrag extends Fragment {
             errorTxt.setText("Email already used");
         } else {
             errorTxt.setText("");
-            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, isVolunteer ? "volunteer" : "leader");
+            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr,
+                    isVolunteer ? "volunteer" : "leader", new String[0]);
 //            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, "admin");
             userDatabase.addUser(user);
             Intent intent = new Intent(requireContext(), HomeActivity.class);

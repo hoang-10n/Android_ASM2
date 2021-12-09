@@ -18,10 +18,25 @@ public class UserDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    private String convertArrayToString(String[] arr) {
+        String delimiter = "_,_";
+        String result = "";
+        for (int i = 0; i < arr.length; i++) {
+            result += arr[i];
+            if (i < arr.length - 1) result += delimiter;
+        }
+        return result;
+    }
+
+    private String[] convertStringToArray(String str) {
+        String delimiter = "_,_";
+        return str.split(delimiter);
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS user(username TEXT PRIMARY KEY, password TEXT," +
-                " email TEXT, phone TEXT, name TEXT, role TEXT)");
+                " email TEXT, phone TEXT, name TEXT, role TEXT, joined_zones TEXT)");
     }
 
     @Override
@@ -45,7 +60,8 @@ public class UserDatabase extends SQLiteOpenHelper {
         else return null;
         if (cursor.getCount() == 0) return null;
         return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                cursor.getString(3), cursor.getString(4), cursor.getString(5),
+                convertStringToArray(cursor.getString(6)));
     }
 
     public User getUserByEmail(String email) {
@@ -58,7 +74,8 @@ public class UserDatabase extends SQLiteOpenHelper {
         else return null;
         if (cursor.getCount() == 0) return null;
         return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                cursor.getString(3), cursor.getString(4), cursor.getString(5),
+                convertStringToArray(cursor.getString(6)));
     }
 
     public void updateUser(User user) {
@@ -68,6 +85,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         values.put("email", user.getEmail());
         values.put("phone", user.getPhone());
         values.put("name", user.getName());
+        values.put("joined_zones", convertArrayToString(user.getJoinedZones()));
         db.update("user", values, "username = ?",
                 new String[]{String.valueOf(user.getUsername())});
         db.close();
@@ -82,6 +100,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         values.put("phone", user.getPhone());
         values.put("name", user.getName());
         values.put("role", user.getRole());
+        values.put("joined_zones", convertArrayToString(user.getJoinedZones()));
         db.insert("user", null, values);
         db.close();
     }
