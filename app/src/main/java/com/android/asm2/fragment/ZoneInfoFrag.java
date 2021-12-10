@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.asm2.R;
+import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.model.Zone;
 
 public class ZoneInfoFrag extends Fragment {
@@ -39,6 +42,7 @@ public class ZoneInfoFrag extends Fragment {
         TextView startTxt = view.findViewById(R.id.zone_info_frag_start_txt);
         TextView leaderTxt = view.findViewById(R.id.zone_info_frag_leader_txt);
         TextView descriptionTxt = view.findViewById(R.id.zone_info_frag_description_txt);
+        ImageButton editBtn = view.findViewById(R.id.zone_info_frag_edit_btn);
 
         nameTxt.setText(zone.getName());
         durationTxt.setText("Duration: " + zone.getDuration() + "hrs");
@@ -48,6 +52,9 @@ public class ZoneInfoFrag extends Fragment {
         startTxt.setText("Start: " + zone.getStartDate() + " at " + zone.getStartTime());
         leaderTxt.setText("created by " + zone.getLeader());
         descriptionTxt.setText(" - " + zone.getDescription());
+
+        editBtn.setOnClickListener(v ->
+                ((ZoneInfoActivity) requireActivity()).changeToEditFrag(zone, false));
 
         return view;
     }

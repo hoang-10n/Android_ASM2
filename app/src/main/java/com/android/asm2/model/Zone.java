@@ -1,5 +1,9 @@
 package com.android.asm2.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Zone {
     private String id;
     private String name;
@@ -13,6 +17,22 @@ public class Zone {
     private String startDate;
     private String startTime;
     private String description;
+
+    public Zone(String id, String leader) {
+        this.id = id;
+        this.name = "";
+        this.latitude = 0;
+        this.longitude = 0;
+        this.duration = 0;
+        this.quantity = 0;
+        this.leader = leader;
+        this.createdDate = (new SimpleDateFormat("yyyy-MM-dd", Locale.US).
+                format(new Date()));
+        this.closedDate = "";
+        this.startDate = "";
+        this.startTime = "";
+        this.description = "";
+    }
 
     public Zone(String id, String name, float latitude, float longitude, float duration,
                 int quantity, String leader, String createdDate, String closedDate,

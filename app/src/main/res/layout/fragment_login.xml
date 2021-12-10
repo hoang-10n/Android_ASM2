@@ -10,9 +10,10 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,6 +47,7 @@
         android:id="@+id/login_frag_username_input"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:background="@drawable/adapter_border"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -62,6 +64,7 @@
         android:id="@+id/login_frag_password_input"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:background="@drawable/adapter_border"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"

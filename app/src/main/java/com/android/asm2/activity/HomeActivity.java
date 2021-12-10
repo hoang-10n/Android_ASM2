@@ -3,8 +3,8 @@ package com.android.asm2.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     private ZoneListFrag zoneListFrag;
     private ArrayList<Zone> zoneArrayList;
     private ZoneDialog dialog;
+    private ZoneDatabase zoneDatabase;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -45,21 +46,30 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String username = (String) intent.getExtras().get("username");
 
-        Button popupBtn = findViewById(R.id.zone_list_frag_popup_btn);
+        Button popupBtn = findViewById(R.id.home_zone_list_popup_btn);
+        ImageButton addBtn = findViewById(R.id.home_zone_list_add_btn);
 
         UserDatabase userDatabase = new UserDatabase(this);
         user = userDatabase.getUserByUsername(username);
-        ZoneDatabase zoneDatabase = new ZoneDatabase(this);
+        zoneDatabase = new ZoneDatabase(this);
         zoneArrayList = zoneDatabase.getAllZones();
 
         dialog = new ZoneDialog(this, android.R.style.Theme_Dialog, this);
-        Log.d("TAG", zoneArrayList.get(0).toString());
         zoneListFrag = new ZoneListFrag(zoneArrayList);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
 
         popupBtn.setOnClickListener(v -> dialog.show());
+        addBtn.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, ZoneInfoActivity.class);
+            String lastZoneId = zoneArrayList.get(zoneArrayList.size() - 1).getId();
+            String newId = "Z" + (Integer.parseInt(lastZoneId.substring(1)) + 1);
+            intent1.putExtra("leader", user.getUsername());
+            intent1.putExtra("id", newId);
+            intent1.putExtra("isAdded", true);
+            startActivityForResult(intent1, 100);
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -85,12 +95,12 @@ public class HomeActivity extends AppCompatActivity {
         int result = 0;
         switch (sortParam) {
             case 0:
-                result = Objects.requireNonNull(dateFormat.parse(a.getClosedDate())).
-                        compareTo(dateFormat.parse(b.getClosedDate()));
+                result = Objects.requireNonNull(dateFormat.parse(b.getClosedDate())).
+                        compareTo(dateFormat.parse(a.getClosedDate()));
                 break;
             case 1:
-                result = Objects.requireNonNull(dateFormat.parse(a.getStartDate())).
-                        compareTo(dateFormat.parse(b.getStartDate()));
+                result = Objects.requireNonNull(dateFormat.parse(b.getStartDate())).
+                        compareTo(dateFormat.parse(a.getStartDate()));
                 break;
             case 2:
                 result = Objects.requireNonNull(timeFormat.parse(a.getStartTime())).
@@ -164,6 +174,14 @@ public class HomeActivity extends AppCompatActivity {
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
     }
-}
 
-// TODO move the search btn and Dialog to HomeActivity
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            zoneArrayList = zoneDatabase.getAllZones();
+            resetZoneListFrag();
+        }
+    }
+}

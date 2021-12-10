@@ -7,21 +7,39 @@
     android:background="@drawable/layout_background"
     tools:context=".activity.HomeActivity">
 
+    <FrameLayout
+        android:id="@+id/home_frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_map_btn"
+        app:layout_constraintTop_toBottomOf="@+id/home_zone_list_popup_btn"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-56dp">
+
+    </FrameLayout>
+
     <Button
         android:id="@+id/home_map_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/secondary_text_light"
         android:text="Zone map"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/home_account_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/home_zone_btn" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/home_account_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/secondary_text_light"
         android:text="Account"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,31 +49,40 @@
         android:id="@+id/home_zone_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/secondary_text_light"
+        android:enabled="false"
         android:text="All zones"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/home_map_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/zone_list_frag_popup_btn"
+        android:id="@+id/home_zone_list_popup_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:text="Filter and sort popup"
         android:textColor="@color/black"
         app:backgroundTint="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/home_zone_list_add_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/home_frag_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_map_btn"
-        app:layout_constraintTop_toBottomOf="@+id/zone_list_frag_popup_btn">
+    <ImageButton
+        android:id="@+id/home_zone_list_add_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Add zone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/home_zone_list_popup_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

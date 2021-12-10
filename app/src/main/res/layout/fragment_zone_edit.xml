@@ -7,12 +7,12 @@
     tools:context=".fragment.ZoneEditFrag">
 
     <TableLayout
+        android:id="@+id/tableLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/adapter_border"
-        app:layout_constraintBottom_toTopOf="@+id/zone_edit_frag_save_btn"
+        app:layout_constraintBottom_toTopOf="@+id/zone_edit_frag_error_txt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zone_edit_frag_leader_txt">
 
@@ -56,10 +56,12 @@
                 android:id="@+id/zone_edit_frag_closed_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5sp"
                 android:layout_marginStart="5sp"
                 android:layout_marginLeft="5sp"
                 android:layout_marginEnd="5sp"
                 android:layout_marginRight="5sp"
+                android:background="@drawable/adapter_border"
                 android:ems="10"
                 android:focusable="false"
                 android:hint="Closed date"
@@ -88,16 +90,18 @@
                 android:id="@+id/zone_edit_frag_start_date_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5sp"
                 android:layout_marginStart="5sp"
                 android:layout_marginLeft="5sp"
                 android:layout_marginEnd="5sp"
                 android:layout_marginRight="5sp"
+                android:background="@drawable/adapter_border"
                 android:ems="10"
                 android:focusable="false"
                 android:hint="Start date"
                 android:inputType="text"
-                android:minHeight="48dp"
                 android:longClickable="false"
+                android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
@@ -121,50 +125,21 @@
                 android:id="@+id/zone_edit_frag_start_time_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5sp"
                 android:layout_marginStart="5sp"
                 android:layout_marginLeft="5sp"
                 android:layout_marginEnd="5sp"
                 android:layout_marginRight="5sp"
+                android:background="@drawable/adapter_border"
                 android:ems="10"
                 android:focusable="false"
                 android:hint="Start time"
                 android:inputType="text"
-                android:minHeight="48dp"
                 android:longClickable="false"
-                android:textColor="@color/black"
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="16sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/zone_edit_frag_quantity_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Max volunteers:"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/zone_edit_frag_quantity_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5sp"
-                android:layout_marginLeft="5sp"
-                android:layout_marginEnd="5sp"
-                android:layout_marginRight="5sp"
-                android:ems="10"
-                android:hint="Quantity"
-                android:inputType="number"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
-
         </TableRow>
 
         <TableRow
@@ -184,10 +159,12 @@
                 android:id="@+id/zone_edit_frag_duration_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5sp"
                 android:layout_marginStart="5sp"
                 android:layout_marginLeft="5sp"
                 android:layout_marginEnd="5sp"
                 android:layout_marginRight="5sp"
+                android:background="@drawable/adapter_border"
                 android:ems="10"
                 android:hint="Duration (hours)"
                 android:inputType="numberDecimal"
@@ -227,7 +204,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/zone_edit_frag_longitude"
+                    android:id="@+id/zone_edit_frag_longitude_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5sp"
@@ -254,10 +231,12 @@
                 android:id="@+id/zone_edit_frag_description_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5sp"
                 android:layout_marginStart="5sp"
                 android:layout_marginLeft="5sp"
                 android:layout_marginEnd="5sp"
                 android:layout_marginRight="5sp"
+                android:background="@drawable/adapter_border"
                 android:ellipsize="none"
                 android:ems="10"
                 android:gravity="top|left"
@@ -273,10 +252,10 @@
     </TableLayout>
 
     <EditText
-        android:id="@+id/zone_edit_frag_name_txt"
+        android:id="@+id/zone_edit_frag_name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal|center_vertical"
         android:hint="Name of the zone"
         android:textColor="@android:color/holo_red_dark"
         android:textColorHint="@android:color/darker_gray"
@@ -293,24 +272,24 @@
         android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/zone_edit_frag_leave_btn"
+        app:layout_constraintEnd_toStartOf="@+id/zone_edit_frag_restore_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/zone_edit_frag_leave_btn"
+        android:id="@+id/zone_edit_frag_restore_btn"
         android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:text="Restore"
         android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/zone_edit_frag_restore_btn"
+        app:layout_constraintEnd_toStartOf="@+id/zone_edit_frag_delete_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/zone_edit_frag_save_btn" />
 
     <Button
-        android:id="@+id/zone_edit_frag_restore_btn"
+        android:id="@+id/zone_edit_frag_delete_btn"
         android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:text="Delete"
@@ -319,18 +298,44 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/zone_edit_frag_leave_btn" />
+        app:layout_constraintStart_toEndOf="@+id/zone_edit_frag_restore_btn" />
 
     <TextView
         android:id="@+id/zone_edit_frag_leader_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:text="LEADER"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zone_edit_frag_name_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/zone_edit_frag_name_input" />
+
+    <ImageButton
+        android:id="@+id/zone_edit_frag_back_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginRight="58dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Back to zone info"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
+    <TextView
+        android:id="@+id/zone_edit_frag_error_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter all fields"
+        android:textColor="@color/design_default_color_error"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/zone_edit_frag_restore_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

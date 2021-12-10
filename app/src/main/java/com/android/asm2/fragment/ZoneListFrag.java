@@ -35,10 +35,8 @@ public class ZoneListFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zone_list, container, false);
-        Context context = getContext();
-
         ListView zoneListContainer = view.findViewById(R.id.zone_list_adapter_container);
-        ZoneAdapter adapter = new ZoneAdapter(context, zoneArrayList);
+        ZoneAdapter adapter = new ZoneAdapter(getContext(), zoneArrayList);
         zoneListContainer.setAdapter(adapter);
 
         return view;

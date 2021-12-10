@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.model.Zone;
@@ -90,10 +92,12 @@ public class ZoneAdapter extends BaseAdapter {
 
         if (isClosed) closedTxt.setTextColor(Color.parseColor("#FF0000"));
         if (isStarted) startTxt.setTextColor(Color.parseColor("#FF0000"));
+
         mapBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ZoneInfoActivity.class);
             intent.putExtra("id", zone.getId());
-            context.startActivity(intent);
+            intent.putExtra("isAdded", false);
+            ((AppCompatActivity) context).startActivityForResult(intent, 100);
         });
 
         return view;
