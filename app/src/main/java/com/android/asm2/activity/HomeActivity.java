@@ -1,32 +1,29 @@
 package com.android.asm2.activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.ListView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.asm2.R;
 import com.android.asm2.ZoneDialog;
-import com.android.asm2.adapter.ZoneAdapter;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.fragment.ZoneListFrag;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
-import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
     private boolean isAscending = true;
@@ -88,15 +85,15 @@ public class HomeActivity extends AppCompatActivity {
         int result = 0;
         switch (sortParam) {
             case 0:
-                result = dateFormat.parse(a.getClosedDate()).
+                result = Objects.requireNonNull(dateFormat.parse(a.getClosedDate())).
                         compareTo(dateFormat.parse(b.getClosedDate()));
                 break;
             case 1:
-                result = dateFormat.parse(a.getStartDate()).
+                result = Objects.requireNonNull(dateFormat.parse(a.getStartDate())).
                         compareTo(dateFormat.parse(b.getStartDate()));
                 break;
             case 2:
-                result = timeFormat.parse(a.getStartTime()).
+                result = Objects.requireNonNull(timeFormat.parse(a.getStartTime())).
                         compareTo(timeFormat.parse(b.getStartTime()));
                 break;
             case 3:
@@ -134,10 +131,12 @@ public class HomeActivity extends AppCompatActivity {
             else {
                 try {
                     if (filterArray[2] &&
-                            dateFormat.parse(current.getClosedDate()).compareTo(date) < 0)
+                            Objects.requireNonNull(dateFormat.
+                                    parse(current.getClosedDate())).compareTo(date) < 0)
                         cloneList.remove(current);
                     else if (filterArray[3] &&
-                            dateFormat.parse(current.getStartDate()).compareTo(date) < 0)
+                            Objects.requireNonNull(dateFormat.
+                                    parse(current.getStartDate())).compareTo(date) < 0)
                         cloneList.remove(current);
                 } catch (ParseException e) {
                     e.printStackTrace();

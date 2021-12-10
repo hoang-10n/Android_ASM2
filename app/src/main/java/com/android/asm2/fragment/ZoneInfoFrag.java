@@ -1,5 +1,6 @@
 package com.android.asm2.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +14,7 @@ import com.android.asm2.R;
 import com.android.asm2.model.Zone;
 
 public class ZoneInfoFrag extends Fragment {
-    private Zone zone = null;
+    private final Zone zone;
 
     public ZoneInfoFrag(Zone zone) {
         this.zone = zone;
@@ -24,6 +25,7 @@ public class ZoneInfoFrag extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

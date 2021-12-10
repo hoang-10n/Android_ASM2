@@ -3,6 +3,7 @@ package com.android.asm2.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class ZoneAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<Zone> zoneArrayList;
+    private final Context context;
+    private final ArrayList<Zone> zoneArrayList;
 
     public ZoneAdapter(Context context, ArrayList<Zone> zoneArrayList) {
         this.context = context;
@@ -46,7 +46,7 @@ public class ZoneAdapter extends BaseAdapter {
         return i;
     }
 
-    @SuppressLint("ViewHolder")
+    @SuppressLint({"ViewHolder"})
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = LayoutInflater.from(context).
@@ -59,16 +59,25 @@ public class ZoneAdapter extends BaseAdapter {
         ImageButton mapBtn = view.findViewById(R.id.zone_adapter_map_btn);
 
         Zone zone = (Zone) getItem(i);
+        String startDateStr = zone.getStartDate();
+        String closedDateStr = zone.getClosedDate();
         String startTimeStr = zone.getStartTime();
         String endTimeStr = "";
+        boolean isClosed = false, isStarted = false;
+
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.US);
-            Date date = dateFormat.parse(startTimeStr);
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.US);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date curDate = new Date();
+            isClosed = dateFormat.parse(closedDateStr).compareTo(curDate) < 0;
+            isStarted = dateFormat.parse(startDateStr).compareTo(curDate) < 0;
+
+            Date startTime = timeFormat.parse(startTimeStr);
             Calendar calendar = Calendar.getInstance();
-            assert date != null;
-            calendar.setTime(date);
+            assert startTime != null;
+            calendar.setTime(startTime);
             calendar.add(Calendar.MINUTE, (int) (zone.getDuration() * 60));
-            endTimeStr = dateFormat.format(calendar.getTime());
+            endTimeStr = timeFormat.format(calendar.getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -78,6 +87,9 @@ public class ZoneAdapter extends BaseAdapter {
         closedTxt.setText("Closed: " + zone.getClosedDate());
         timeTxt.setText(startTimeStr + " - " + endTimeStr);
         startTxt.setText("Start: " + zone.getStartDate());
+
+        if (isClosed) closedTxt.setTextColor(Color.parseColor("#FF0000"));
+        if (isStarted) startTxt.setTextColor(Color.parseColor("#FF0000"));
         mapBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ZoneInfoActivity.class);
             intent.putExtra("id", zone.getId());

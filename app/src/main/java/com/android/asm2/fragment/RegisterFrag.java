@@ -1,5 +1,6 @@
 package com.android.asm2.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -52,6 +53,7 @@ public class RegisterFrag extends Fragment {
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
     public void enterApp() {
         UserDatabase userDatabase = new UserDatabase(getContext());
         String usernameStr = usernameInput.getText().toString();

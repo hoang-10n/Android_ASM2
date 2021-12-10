@@ -1,11 +1,8 @@
 package com.android.asm2;
 
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
-import android.media.Image;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,12 +15,10 @@ import android.widget.Spinner;
 import androidx.annotation.RequiresApi;
 
 import com.android.asm2.activity.HomeActivity;
-import com.android.asm2.activity.MainActivity;
-import com.android.asm2.fragment.ZoneListFrag;
 
 public class ZoneDialog extends Dialog {
     private final int[] sortParam = {0};
-    private boolean[] isAscending = {true};
+    private final boolean[] isAscending = {true};
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public ZoneDialog(Context context, int themeResId, HomeActivity activity) {
@@ -76,8 +71,9 @@ public class ZoneDialog extends Dialog {
         applyBtn.setOnClickListener(v -> {
             boolean[] filterParams = {showJoinCheck.isChecked(), showLeadingCheck.isChecked(),
                     hideClosed.isChecked(), hideStarted.isChecked()};
-            activity.setData(nameInput.getText().toString(),
-                    leaderInput.getText().toString(), isAscending[0], sortParam[0], filterParams);
+            activity.setData(nameInput.getText().toString().trim(),
+                    leaderInput.getText().toString().trim(),
+                    isAscending[0], sortParam[0], filterParams);
             dismiss();
         });
 

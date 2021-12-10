@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.android.asm2.R;
 import com.android.asm2.database.ZoneDatabase;
-import com.android.asm2.fragment.ZoneEditFrag;
 import com.android.asm2.fragment.ZoneInfoFrag;
 import com.android.asm2.model.Zone;
 

@@ -1,26 +1,21 @@
 package com.android.asm2.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.asm2.R;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class ZoneEditFrag extends Fragment {
     public ZoneEditFrag() {
@@ -47,10 +42,11 @@ public class ZoneEditFrag extends Fragment {
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog dialog = new DatePickerDialog(
+            @SuppressLint("SetTextI18n") DatePickerDialog dialog = new DatePickerDialog(
                     requireActivity(),
                     android.R.style.Theme_Holo_Dialog_MinWidth,
-                    (datePicker, year1, month1, day1) -> closedInput.setText(year1 + "-" + month1 + "-" + day1),
+                    (datePicker, year1, month1, day1) ->
+                            closedInput.setText(year1 + "-" + month1 + "-" + day1),
                     year, month, day
             );
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -63,10 +59,11 @@ public class ZoneEditFrag extends Fragment {
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog dialog = new DatePickerDialog(
+            @SuppressLint("SetTextI18n") DatePickerDialog dialog = new DatePickerDialog(
                     requireActivity(),
                     android.R.style.Theme_Holo_Dialog_MinWidth,
-                    (datePicker, year1, month1, day1) -> startDateInput.setText(year1 + "-" + month1 + "-" + day1),
+                    (datePicker, year1, month1, day1) ->
+                            startDateInput.setText(year1 + "-" + month1 + "-" + day1),
                     year, month, day
             );
             dialog.setTitle("Select closed date:");
@@ -79,10 +76,10 @@ public class ZoneEditFrag extends Fragment {
             int hour = time.get(Calendar.HOUR);
             int minute = time.get(Calendar.MINUTE);
 
-            TimePickerDialog dialog = new TimePickerDialog(
+            @SuppressLint("SetTextI18n") TimePickerDialog dialog = new TimePickerDialog(
                     requireActivity(),
                     android.R.style.Theme_Holo_Dialog_MinWidth,
-                    (timePicker, i, i1) -> startTimeInput.setText(i + ":" + i1),
+                    (timePicker, hours, minutes) -> startTimeInput.setText(hours + ":" + minutes),
                     hour, minute, true
             );
             dialog.setTitle("Select start time:");
