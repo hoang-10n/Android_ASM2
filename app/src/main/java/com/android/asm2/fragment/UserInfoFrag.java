@@ -53,7 +53,7 @@ public class UserInfoFrag extends Fragment {
         phoneTxt.setText(user.getPhone());
         nameTxt.setText(user.getName());
         roleTxt.setText(user.getRole());
-        joinedTxt.setText(user.getJoinedZones().length + "");
+        joinedTxt.setText(user.getJoinedZones().size() + "");
         hostedTxt.setText(hosted + "");
 
         logoutBtn.setOnClickListener(v -> requireActivity().finish());

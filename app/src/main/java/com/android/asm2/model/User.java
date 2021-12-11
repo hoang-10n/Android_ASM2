@@ -1,5 +1,7 @@
 package com.android.asm2.model;
 
+import java.util.ArrayList;
+
 public class User {
     private String username;
     private String password;
@@ -7,9 +9,9 @@ public class User {
     private String phone;
     private String name;
     private String role;
-    private String[] joinedZones;
+    private ArrayList<String> joinedZones;
 
-    public User(String username, String password, String email, String phone, String name, String role, String[] joinedZones) {
+    public User(String username, String password, String email, String phone, String name, String role, ArrayList<String> joinedZones) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -67,11 +69,11 @@ public class User {
         this.name = name;
     }
 
-    public String[] getJoinedZones() {
+    public ArrayList<String> getJoinedZones() {
         return joinedZones;
     }
 
-    public void setJoinedZones(String[] joinedZones) {
+    public void setJoinedZones(ArrayList<String> joinedZones) {
         this.joinedZones = joinedZones;
     }
 }

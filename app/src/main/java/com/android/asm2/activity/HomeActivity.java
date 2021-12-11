@@ -47,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String username = (String) intent.getExtras().get("username");
-        int hosted = 0;
 
         Button popupBtn = findViewById(R.id.home_zone_list_popup_btn);
         Button accountBtn = findViewById(R.id.home_account_btn);
@@ -65,10 +64,6 @@ public class HomeActivity extends AppCompatActivity {
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
 
-        for (Zone i : zoneArrayList)
-            if (i.getLeader().equals(user.getUsername())) hosted++;
-        UserInfoFrag userInfoFrag = new UserInfoFrag(user, hosted);
-
         popupBtn.setOnClickListener(v -> dialog.show());
         addBtn.setOnClickListener(v -> {
             Intent intent1 = new Intent(this, ZoneInfoActivity.class);
@@ -84,10 +79,7 @@ public class HomeActivity extends AppCompatActivity {
             accountBtn.setEnabled(false);
             addBtn.setVisibility(View.GONE);
             popupBtn.setVisibility(View.GONE);
-            FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
-            ft1.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-            ft1.replace(R.id.home_frag_container, userInfoFrag);
-            ft1.commit();
+            resetUserInfoFrag(user);
         });
         zoneBtn.setOnClickListener(v -> {
             accountBtn.setEnabled(true);
@@ -153,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
             if (!current.getName().contains(zoneName) || !current.getLeader().contains(zoneLeader))
                 cloneList.remove(current);
             else if (filterArray[0]) {
-                String[] joined = user.getJoinedZones();
+                ArrayList<String> joined = user.getJoinedZones();
                 boolean isRemove = true;
                 for (String zoneId : joined) {
                     if (current.getId().equals(zoneId)) {
@@ -199,6 +191,23 @@ public class HomeActivity extends AppCompatActivity {
         zoneListFrag = new ZoneListFrag(searchSortFilter(zoneArrayList.toArray()));
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
+    }
+
+    private void resetUserInfoFrag(User user) {
+        int hosted = 0;
+        for (Zone i : zoneArrayList)
+            if (i.getLeader().equals(user.getUsername())) hosted++;
+        UserInfoFrag userInfoFrag = new UserInfoFrag(user, hosted);
+        FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
+        ft1.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        ft1.replace(R.id.home_frag_container, userInfoFrag);
+        ft1.commit();
+    }
+
+    public void editUser(User user) {
+        UserDatabase userDatabase = new UserDatabase(this);
+        userDatabase.updateUser(user);
+        resetUserInfoFrag(user);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

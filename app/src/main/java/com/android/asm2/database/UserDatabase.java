@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.android.asm2.model.User;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class UserDatabase extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
@@ -18,20 +21,20 @@ public class UserDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    private String convertArrayToString(String[] arr) {
+    private String arrayListToString(ArrayList<String> arr) {
         String delimiter = "_,_";
         String result = "";
-        for (int i = 0; i < arr.length; i++) {
-            result += arr[i];
-            if (i < arr.length - 1) result += delimiter;
+        for (int i = 0; i < arr.size(); i++) {
+            result += arr.get(i);
+            if (i < arr.size() - 1) result += delimiter;
         }
         return result;
     }
 
-    private String[] convertStringToArray(String str) {
-        if (str.equals("")) return new String[0];
+    private ArrayList<String> stringToArrayList(String str) {
+        if (str.equals("")) return new ArrayList<>();
         String delimiter = "_,_";
-        return str.split(delimiter);
+        return (ArrayList<String>) Arrays.asList(str.split(delimiter));
     }
 
     @Override
@@ -62,7 +65,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         if (cursor.getCount() == 0) return null;
         return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                 cursor.getString(3), cursor.getString(4), cursor.getString(5),
-                convertStringToArray(cursor.getString(6)));
+                stringToArrayList(cursor.getString(6)));
     }
 
     public User getUserByEmail(String email) {
@@ -76,7 +79,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         if (cursor.getCount() == 0) return null;
         return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                 cursor.getString(3), cursor.getString(4), cursor.getString(5),
-                convertStringToArray(cursor.getString(6)));
+                stringToArrayList(cursor.getString(6)));
     }
 
     public void updateUser(User user) {
@@ -86,7 +89,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         values.put("email", user.getEmail());
         values.put("phone", user.getPhone());
         values.put("name", user.getName());
-        values.put("joined_zones", convertArrayToString(user.getJoinedZones()));
+        values.put("joined_zones", arrayListToString(user.getJoinedZones()));
         db.update("user", values, "username = ?",
                 new String[]{String.valueOf(user.getUsername())});
         db.close();
@@ -101,7 +104,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         values.put("phone", user.getPhone());
         values.put("name", user.getName());
         values.put("role", user.getRole());
-        values.put("joined_zones", convertArrayToString(user.getJoinedZones()));
+        values.put("joined_zones", arrayListToString(user.getJoinedZones()));
         db.insert("user", null, values);
         db.close();
     }

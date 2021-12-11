@@ -44,7 +44,8 @@ public class UserDialog extends Dialog {
             user.setPhone(phoneInput.getText().toString());
             user.setName(nameInput.getText().toString().trim());
             user.setRole(leader.isChecked() ? "leader" : "volunteer");
-            Log.d("TAG", new Gson().toJson(user));
+            dismiss();
+            activity.editUser(user);
         });
     }
 

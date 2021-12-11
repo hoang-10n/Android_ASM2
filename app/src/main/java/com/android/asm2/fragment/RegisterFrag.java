@@ -18,6 +18,8 @@ import com.android.asm2.R;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 
+import java.util.ArrayList;
+
 
 public class RegisterFrag extends Fragment {
     EditText usernameInput, passwordInput, emailInput, phoneInput, confirmInput, nameInput;
@@ -74,7 +76,7 @@ public class RegisterFrag extends Fragment {
         } else {
             errorTxt.setText("");
             User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr,
-                    isVolunteer ? "volunteer" : "leader", new String[0]);
+                    isVolunteer ? "volunteer" : "leader", new ArrayList<>());
 //            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, "admin");
             userDatabase.addUser(user);
             Intent intent = new Intent(requireContext(), HomeActivity.class);
