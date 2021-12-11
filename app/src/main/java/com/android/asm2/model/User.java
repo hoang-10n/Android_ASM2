@@ -83,4 +83,12 @@ public class User {
         }
         return false;
     }
+
+    public void joinZone(String zoneId) {
+        joinedZones.add(zoneId);
+    }
+
+    public void leaveZone(String zoneId) {
+        joinedZones.remove(zoneId);
+    }
 }

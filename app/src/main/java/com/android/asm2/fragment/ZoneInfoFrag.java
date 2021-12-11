@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.asm2.FriendDialog;
 import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.model.Zone;
@@ -56,6 +57,11 @@ public class ZoneInfoFrag extends Fragment {
         leaderTxt.setText("created by " + zone.getLeader());
         descriptionTxt.setText(" - " + zone.getDescription());
 
+        friendBtn.setOnClickListener(v -> {
+            FriendDialog friendDialog = new FriendDialog(getContext(),
+                    android.R.style.Theme_Dialog, zone);
+            friendDialog.show();
+        });
         if (isLeader) {
             multipleBtn.setText("Edit this zone");
             multipleBtn.setOnClickListener(v ->
