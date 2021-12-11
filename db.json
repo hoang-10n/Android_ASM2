@@ -137,7 +137,7 @@
   ],
   "report": [
     {
-      "id": "R1",
+      "zoneId": "Z1",
       "testedPeople": 1000,
       "volunteer": 100,
       "sample": 5000,
@@ -145,7 +145,7 @@
       "positive": 100
     },
     {
-      "id": "R2",
+      "zoneId": "Z2",
       "testedPeople": 2000,
       "volunteer": 200,
       "sample": 4000,
