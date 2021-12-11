@@ -26,12 +26,13 @@ public class ZoneInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         boolean isAdded = (boolean) intent.getExtras().get("isAdded");
         String zoneId = (String) intent.getExtras().get("id");
+        String leader = (String) intent.getExtras().get("leader");
         if (!isAdded) {
+            boolean joined = (boolean) intent.getExtras().get("joined");
             ZoneDatabase database = new ZoneDatabase(this);
             Zone zone = database.getZoneById(zoneId);
-            startingFrag = new ZoneInfoFrag(zone);
+            startingFrag = new ZoneInfoFrag(zone, leader.equals(zone.getLeader()), joined);
         } else {
-            String leader = (String) intent.getExtras().get("leader");
             Zone zone = new Zone(zoneId, leader);
             startingFrag = new ZoneEditFrag(zone, true);
         }

@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         zoneArrayList = zoneDatabase.getAllZones();
 
         dialog = new ZoneDialog(this, android.R.style.Theme_Dialog, this);
-        zoneListFrag = new ZoneListFrag(zoneArrayList);
+        zoneListFrag = new ZoneListFrag(zoneArrayList, user);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
@@ -145,15 +145,7 @@ public class HomeActivity extends AppCompatActivity {
             if (!current.getName().contains(zoneName) || !current.getLeader().contains(zoneLeader))
                 cloneList.remove(current);
             else if (filterArray[0]) {
-                ArrayList<String> joined = user.getJoinedZones();
-                boolean isRemove = true;
-                for (String zoneId : joined) {
-                    if (current.getId().equals(zoneId)) {
-                        isRemove = false;
-                        break;
-                    }
-                }
-                if (isRemove) cloneList.remove(current);
+                if (!user.isJoinedZone(current.getId())) cloneList.remove(current);
             } else if (filterArray[1] && !current.getLeader().equals(zoneLeader))
                 cloneList.remove(current);
             else {
@@ -188,7 +180,8 @@ public class HomeActivity extends AppCompatActivity {
     private void resetZoneListFrag() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        zoneListFrag = new ZoneListFrag(searchSortFilter(zoneArrayList.toArray()));
+        zoneListFrag = new ZoneListFrag(searchSortFilter(zoneArrayList.toArray()),
+                user);
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
     }

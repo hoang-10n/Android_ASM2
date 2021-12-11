@@ -96,7 +96,7 @@
         android:text="THIS IS THE LONGEST DESCRIPTION I HAVE EVER SEEN. IT STRETCHES FROM HERE TO HERE"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/zone_info_frag_enter_btn"
+        app:layout_constraintBottom_toTopOf="@+id/zone_info_frag_friend_btn"
         app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_map_btn"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_description_tag_txt" />
@@ -127,18 +127,6 @@
         app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_name_txt"
         app:tint="@color/black" />
 
-    <ImageButton
-        android:id="@+id/zone_info_frag_edit_btn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_margin="10dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Edit"
-        android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zone_info_frag_map_btn"
-        app:tint="@color/black" />
-
     <TextView
         android:id="@+id/zone_info_frag_description_tag_txt"
         android:layout_width="wrap_content"
@@ -151,27 +139,27 @@
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <Button
-        android:id="@+id/zone_info_frag_enter_btn"
+        android:id="@+id/zone_info_frag_friend_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Enter this zone"
+        android:text="Invite a friend"
         android:textColor="@color/white"
-        app:backgroundTint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_leave_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/zone_info_frag_leave_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Leave this zone"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/design_default_color_error"
+        app:backgroundTint="@android:color/holo_purple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/zone_info_frag_enter_btn" />
+        app:layout_constraintStart_toEndOf="@+id/zone_info_frag_multiple_btn" />
+
+    <Button
+        android:id="@+id/zone_info_frag_multiple_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Multiple usage"
+        android:textColor="@color/white"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/zone_info_frag_friend_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

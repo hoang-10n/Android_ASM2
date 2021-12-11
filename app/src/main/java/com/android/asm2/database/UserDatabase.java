@@ -34,7 +34,7 @@ public class UserDatabase extends SQLiteOpenHelper {
     private ArrayList<String> stringToArrayList(String str) {
         if (str.equals("")) return new ArrayList<>();
         String delimiter = "_,_";
-        return (ArrayList<String>) Arrays.asList(str.split(delimiter));
+        return new ArrayList<>(Arrays.asList(str.split(delimiter)));
     }
 
     @Override

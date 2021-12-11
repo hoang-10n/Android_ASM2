@@ -13,15 +13,18 @@ import androidx.fragment.app.Fragment;
 
 import com.android.asm2.R;
 import com.android.asm2.adapter.ZoneAdapter;
+import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
 
 public class ZoneListFrag extends Fragment {
-    ArrayList<Zone> zoneArrayList;
+    private final ArrayList<Zone> zoneArrayList;
+    private final User user;
 
-    public ZoneListFrag(ArrayList<Zone> zoneArrayList) {
+    public ZoneListFrag(ArrayList<Zone> zoneArrayList, User user) {
         this.zoneArrayList = zoneArrayList;
+        this.user = user;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class ZoneListFrag extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zone_list, container, false);
         ListView zoneListContainer = view.findViewById(R.id.zone_list_adapter_container);
-        ZoneAdapter adapter = new ZoneAdapter(getContext(), zoneArrayList);
+        ZoneAdapter adapter = new ZoneAdapter(getContext(), zoneArrayList, user);
         zoneListContainer.setAdapter(adapter);
 
         return view;

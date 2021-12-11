@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.asm2.R;
@@ -18,9 +17,12 @@ import com.android.asm2.model.Zone;
 
 public class ZoneInfoFrag extends Fragment {
     private final Zone zone;
+    private final boolean isLeader, joined;
 
-    public ZoneInfoFrag(Zone zone) {
+    public ZoneInfoFrag(Zone zone, boolean isLeader, boolean joined) {
         this.zone = zone;
+        this.isLeader = isLeader;
+        this.joined = joined;
     }
 
     @Override
@@ -42,7 +44,8 @@ public class ZoneInfoFrag extends Fragment {
         TextView startTxt = view.findViewById(R.id.zone_info_frag_start_txt);
         TextView leaderTxt = view.findViewById(R.id.zone_info_frag_leader_txt);
         TextView descriptionTxt = view.findViewById(R.id.zone_info_frag_description_txt);
-        ImageButton editBtn = view.findViewById(R.id.zone_info_frag_edit_btn);
+        Button multipleBtn = view.findViewById(R.id.zone_info_frag_multiple_btn);
+        Button friendBtn = view.findViewById(R.id.zone_info_frag_friend_btn);
 
         nameTxt.setText(zone.getName());
         durationTxt.setText("Duration: " + zone.getDuration() + "hrs");
@@ -53,8 +56,15 @@ public class ZoneInfoFrag extends Fragment {
         leaderTxt.setText("created by " + zone.getLeader());
         descriptionTxt.setText(" - " + zone.getDescription());
 
-        editBtn.setOnClickListener(v ->
-                ((ZoneInfoActivity) requireActivity()).changeToEditFrag(zone, false));
+        if (isLeader) {
+            multipleBtn.setText("Edit this zone");
+            multipleBtn.setOnClickListener(v ->
+                    ((ZoneInfoActivity) requireActivity()).changeToEditFrag(zone, false));
+        } else if (joined) {
+            multipleBtn.setText("Leave this zone");
+        } else {
+            multipleBtn.setText("Enter this zone");
+        }
 
         return view;
     }

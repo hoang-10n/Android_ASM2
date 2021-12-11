@@ -76,4 +76,11 @@ public class User {
     public void setJoinedZones(ArrayList<String> joinedZones) {
         this.joinedZones = joinedZones;
     }
+
+    public boolean isJoinedZone(String zoneId) {
+        for (String id : joinedZones) {
+            if (id.equals(zoneId)) return true;
+        }
+        return false;
+    }
 }
