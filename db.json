@@ -104,7 +104,14 @@
       "leader": "leader1",
       "duration": 3,
       "startDate": "2021-12-06",
-      "startTime": "09:30"
+      "startTime": "09:30",
+      "report": {
+        "testedPeople": 1000,
+        "volunteer": 100,
+        "sample": 5000,
+        "positiveFirstTest": 600,
+        "positive": 100
+      }
     },
     {
       "id": "Z2",
@@ -118,7 +125,14 @@
       "leader": "leader2",
       "duration": 3,
       "startDate": "2021-12-06",
-      "startTime": "07:30"
+      "startTime": "07:30",
+      "report": {
+        "testedPeople": 2000,
+        "volunteer": 200,
+        "sample": 4000,
+        "positiveFirstTest": 300,
+        "positive": 100
+      }
     },
     {
       "id": "Z3",
@@ -132,7 +146,8 @@
       "leader": "leader3",
       "duration": 3,
       "startDate": "2021-12-06",
-      "startTime": "08:30"
+      "startTime": "08:30",
+      "report": {}
     }
   ]
 }
