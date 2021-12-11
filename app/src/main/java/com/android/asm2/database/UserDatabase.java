@@ -29,6 +29,7 @@ public class UserDatabase extends SQLiteOpenHelper {
     }
 
     private String[] convertStringToArray(String str) {
+        if (str.equals("")) return new String[0];
         String delimiter = "_,_";
         return str.split(delimiter);
     }

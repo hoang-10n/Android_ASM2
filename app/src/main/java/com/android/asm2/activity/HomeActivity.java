@@ -3,6 +3,7 @@ package com.android.asm2.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -14,6 +15,7 @@ import com.android.asm2.R;
 import com.android.asm2.ZoneDialog;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.database.ZoneDatabase;
+import com.android.asm2.fragment.UserInfoFrag;
 import com.android.asm2.fragment.ZoneListFrag;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
@@ -45,8 +47,11 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String username = (String) intent.getExtras().get("username");
+        int hosted = 0;
 
         Button popupBtn = findViewById(R.id.home_zone_list_popup_btn);
+        Button accountBtn = findViewById(R.id.home_account_btn);
+        Button zoneBtn = findViewById(R.id.home_zone_btn);
         ImageButton addBtn = findViewById(R.id.home_zone_list_add_btn);
 
         UserDatabase userDatabase = new UserDatabase(this);
@@ -60,6 +65,10 @@ public class HomeActivity extends AppCompatActivity {
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
 
+        for (Zone i : zoneArrayList)
+            if (i.getLeader().equals(user.getUsername())) hosted++;
+        UserInfoFrag userInfoFrag = new UserInfoFrag(user, hosted);
+
         popupBtn.setOnClickListener(v -> dialog.show());
         addBtn.setOnClickListener(v -> {
             Intent intent1 = new Intent(this, ZoneInfoActivity.class);
@@ -69,6 +78,23 @@ public class HomeActivity extends AppCompatActivity {
             intent1.putExtra("id", newId);
             intent1.putExtra("isAdded", true);
             startActivityForResult(intent1, 100);
+        });
+        accountBtn.setOnClickListener(v -> {
+            zoneBtn.setEnabled(true);
+            accountBtn.setEnabled(false);
+            addBtn.setVisibility(View.GONE);
+            popupBtn.setVisibility(View.GONE);
+            FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
+            ft1.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            ft1.replace(R.id.home_frag_container, userInfoFrag);
+            ft1.commit();
+        });
+        zoneBtn.setOnClickListener(v -> {
+            accountBtn.setEnabled(true);
+            zoneBtn.setEnabled(false);
+            addBtn.setVisibility(View.VISIBLE);
+            popupBtn.setVisibility(View.VISIBLE);
+            resetZoneListFrag();
         });
     }
 

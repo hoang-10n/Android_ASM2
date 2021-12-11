@@ -134,5 +134,23 @@
       "startDate": "2021-12-06",
       "startTime": "08:30"
     }
+  ],
+  "report": [
+    {
+      "zoneId": "Z1",
+      "testedPeople": 1000,
+      "volunteer": 100,
+      "sample": 5000,
+      "positiveFirstTest": 600,
+      "positive": 100
+    },
+    {
+      "zoneId": "Z2",
+      "testedPeople": 2000,
+      "volunteer": 200,
+      "sample": 4000,
+      "positiveFirstTest": 300,
+      "positive": 100
+    }
   ]
 }

@@ -69,9 +69,9 @@
         android:text="Confirm:"
         android:textColor="@color/black"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/register_frag_role_txt"
+        app:layout_constraintBottom_toBottomOf="@+id/register_frag_confirm_input"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/register_frag_password_txt" />
+        app:layout_constraintTop_toTopOf="@+id/register_frag_confirm_input" />
 
     <TextView
         android:id="@+id/register_frag_role_txt"
