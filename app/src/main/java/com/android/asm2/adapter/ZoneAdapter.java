@@ -28,12 +28,10 @@ import java.util.Locale;
 public class ZoneAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<Zone> zoneArrayList;
-    private final User user;
 
-    public ZoneAdapter(Context context, ArrayList<Zone> zoneArrayList, User user) {
+    public ZoneAdapter(Context context, ArrayList<Zone> zoneArrayList) {
         this.context = context;
         this.zoneArrayList = zoneArrayList;
-        this.user = user;
     }
 
     @Override
@@ -100,8 +98,6 @@ public class ZoneAdapter extends BaseAdapter {
             Intent intent = new Intent(context, ZoneInfoActivity.class);
             intent.putExtra("id", zone.getId());
             intent.putExtra("isAdded", false);
-            intent.putExtra("leader", user.getUsername());
-            intent.putExtra("joined", user.isJoinedZone(zone.getId()));
             ((AppCompatActivity) context).startActivityForResult(intent, 100);
         });
 

@@ -42,7 +42,7 @@ public class LoginFrag extends Fragment {
 
     @SuppressLint("SetTextI18n")
     public void enterApp() {
-        UserDatabase userDatabase = new UserDatabase(getContext());
+        UserDatabase userDatabase = UserDatabase.getInstance();
         String usernameStr = usernameInput.getText().toString();
         String passwordStr = passwordInput.getText().toString();
         User user = userDatabase.getUserByUsername(usernameStr);
@@ -55,7 +55,7 @@ public class LoginFrag extends Fragment {
         } else {
             errorTxt.setText("");
             Intent intent = new Intent(requireContext(), HomeActivity.class);
-            intent.putExtra("username", usernameStr);
+            UserDatabase.setCurrentUser(user);
             requireActivity().startActivity(intent);
         }
     }

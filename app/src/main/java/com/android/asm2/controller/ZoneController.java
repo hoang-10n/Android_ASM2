@@ -20,7 +20,7 @@ public class ZoneController {
 
     public static void init(Context context) {
         queue = Volley.newRequestQueue(context);
-        database = new ZoneDatabase(context);
+        database = ZoneDatabase.initAndGetInstance(context);
     }
 
     public static void getAllZones() {

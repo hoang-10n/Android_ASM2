@@ -30,7 +30,7 @@ public class FriendDialog extends Dialog {
         });
 
         sendBtn.setOnClickListener(v -> {
-            UserDatabase userDatabase = new UserDatabase(getContext());
+            UserDatabase userDatabase = UserDatabase.getInstance();
             User user = userDatabase.getUserByEmail(emailInput.getText().toString().trim());
             if (user != null) {
                 if (user.getJoinedZones().contains(zone.getId()) ||

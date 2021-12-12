@@ -102,7 +102,7 @@ public class ZoneEditFrag extends Fragment {
         restoreBtn.setOnClickListener(v -> setInput());
         saveBtn.setOnClickListener((v -> saveZone()));
         deleteBtn.setOnClickListener(v -> {
-            ZoneDatabase zoneDatabase = new ZoneDatabase(getContext());
+            ZoneDatabase zoneDatabase = ZoneDatabase.getInstance();
             zoneDatabase.deleteZoneById(zone.getId());
             requireActivity().finish();
         });
@@ -170,7 +170,7 @@ public class ZoneEditFrag extends Fragment {
                 durationFloat, zone.getQuantity(), zone.getLeader(), zone.getCreatedDate(),
                 closedDateStr[0], startDateStr[0], startTimeStr[0],
                 descriptionInput.getText().toString());
-        ZoneDatabase zoneDatabase = new ZoneDatabase(getContext());
+        ZoneDatabase zoneDatabase = ZoneDatabase.getInstance();
         if (isAdded) zoneDatabase.addZone(saveZone);
         else zoneDatabase.updateZone(saveZone);
         requireActivity().finish();

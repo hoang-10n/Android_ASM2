@@ -12,12 +12,22 @@ import com.android.asm2.model.Zone;
 import java.util.ArrayList;
 
 public class ZoneDatabase extends SQLiteOpenHelper {
+    private static ZoneDatabase zoneDatabase;
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "zone.db";
 
-    public ZoneDatabase(Context context) {
+    private ZoneDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static ZoneDatabase getInstance() {
+        return zoneDatabase;
+    }
+
+    public static ZoneDatabase initAndGetInstance(Context context) {
+        zoneDatabase = new ZoneDatabase(context);
+        return zoneDatabase;
     }
 
     @Override

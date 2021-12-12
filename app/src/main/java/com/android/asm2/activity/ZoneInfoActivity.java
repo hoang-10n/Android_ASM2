@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.asm2.R;
+import com.android.asm2.database.UserDatabase;
 import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.fragment.ZoneEditFrag;
 import com.android.asm2.fragment.ZoneInfoFrag;
+import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
 public class ZoneInfoActivity extends AppCompatActivity {
@@ -26,14 +28,13 @@ public class ZoneInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         boolean isAdded = (boolean) intent.getExtras().get("isAdded");
         String zoneId = (String) intent.getExtras().get("id");
-        String leader = (String) intent.getExtras().get("leader");
         if (!isAdded) {
-            boolean joined = (boolean) intent.getExtras().get("joined");
-            ZoneDatabase database = new ZoneDatabase(this);
+            ZoneDatabase database = ZoneDatabase.getInstance();
             Zone zone = database.getZoneById(zoneId);
-            startingFrag = new ZoneInfoFrag(zone, leader.equals(zone.getLeader()), joined);
+            startingFrag = new ZoneInfoFrag(zone);
         } else {
-            Zone zone = new Zone(zoneId, leader);
+            User user = UserDatabase.getCurrentUser();
+            Zone zone = new Zone(zoneId, user.getUsername());
             startingFrag = new ZoneEditFrag(zone, true);
         }
 

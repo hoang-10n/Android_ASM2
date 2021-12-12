@@ -57,7 +57,7 @@ public class RegisterFrag extends Fragment {
 
     @SuppressLint("SetTextI18n")
     public void enterApp() {
-        UserDatabase userDatabase = new UserDatabase(getContext());
+        UserDatabase userDatabase = UserDatabase.getInstance();
         String usernameStr = usernameInput.getText().toString();
         String passwordStr = passwordInput.getText().toString();
         String emailStr = emailInput.getText().toString();
@@ -80,7 +80,7 @@ public class RegisterFrag extends Fragment {
 //            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, "admin");
             userDatabase.addUser(user);
             Intent intent = new Intent(requireContext(), HomeActivity.class);
-            intent.putExtra("username", usernameStr);
+            UserDatabase.setCurrentUser(user);
             requireActivity().startActivity(intent);
         }
     }

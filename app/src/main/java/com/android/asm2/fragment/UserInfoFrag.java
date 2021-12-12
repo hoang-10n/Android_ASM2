@@ -13,14 +13,13 @@ import android.widget.TextView;
 import com.android.asm2.R;
 import com.android.asm2.UserDialog;
 import com.android.asm2.activity.HomeActivity;
+import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 
 public class UserInfoFrag extends Fragment {
-    private User user;
     private int hosted;
 
-    public UserInfoFrag(User user, int hosted) {
-        this.user = user;
+    public UserInfoFrag(int hosted) {
         this.hosted = hosted;
     }
 
@@ -45,8 +44,9 @@ public class UserInfoFrag extends Fragment {
         Button logoutBtn = view.findViewById(R.id.user_info_frag_logout_btn);
         Button changePopupBtn = view.findViewById(R.id.user_info_frag_change_popup_btn);
         UserDialog userDialog = new UserDialog(getContext(), android.R.style.Theme_Dialog,
-                (HomeActivity) requireActivity(), user);
+                (HomeActivity) requireActivity());
 
+        User user = UserDatabase.getCurrentUser();
         usernameTxt.setText(user.getUsername());
         passwordTxt.setText(user.getPassword());
         emailTxt.setText(user.getEmail());

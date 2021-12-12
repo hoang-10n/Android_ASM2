@@ -13,12 +13,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UserDatabase extends SQLiteOpenHelper {
+    private static UserDatabase userDatabase;
+    private static User currentUser;
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "user.db";
 
-    public UserDatabase(Context context) {
+    private UserDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static UserDatabase getInstance() {
+        return userDatabase;
+    }
+
+    public static UserDatabase initAndGetInstance(Context context) {
+        userDatabase = new UserDatabase(context);
+        return userDatabase;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        UserDatabase.currentUser = currentUser;
     }
 
     private String arrayListToString(ArrayList<String> arr) {

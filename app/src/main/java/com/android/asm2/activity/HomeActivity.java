@@ -45,21 +45,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent = getIntent();
-        String username = (String) intent.getExtras().get("username");
-
         Button popupBtn = findViewById(R.id.home_zone_list_popup_btn);
         Button accountBtn = findViewById(R.id.home_account_btn);
         Button zoneBtn = findViewById(R.id.home_zone_btn);
         ImageButton addBtn = findViewById(R.id.home_zone_list_add_btn);
 
-        UserDatabase userDatabase = new UserDatabase(this);
-        user = userDatabase.getUserByUsername(username);
-        zoneDatabase = new ZoneDatabase(this);
+        user = UserDatabase.getCurrentUser();
+        zoneDatabase = ZoneDatabase.getInstance();
         zoneArrayList = zoneDatabase.getAllZones();
 
         dialog = new ZoneDialog(this, android.R.style.Theme_Dialog, this);
-        zoneListFrag = new ZoneListFrag(zoneArrayList, user);
+        zoneListFrag = new ZoneListFrag(zoneArrayList);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
@@ -69,17 +65,17 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent1 = new Intent(this, ZoneInfoActivity.class);
             String lastZoneId = zoneArrayList.get(zoneArrayList.size() - 1).getId();
             String newId = "Z" + (Integer.parseInt(lastZoneId.substring(1)) + 1);
-            intent1.putExtra("leader", user.getUsername());
             intent1.putExtra("id", newId);
             intent1.putExtra("isAdded", true);
             startActivityForResult(intent1, 100);
         });
+
         accountBtn.setOnClickListener(v -> {
             zoneBtn.setEnabled(true);
             accountBtn.setEnabled(false);
             addBtn.setVisibility(View.GONE);
             popupBtn.setVisibility(View.GONE);
-            resetUserInfoFrag(user);
+            resetUserInfoFrag();
         });
         zoneBtn.setOnClickListener(v -> {
             accountBtn.setEnabled(true);
@@ -146,7 +142,7 @@ public class HomeActivity extends AppCompatActivity {
                 cloneList.remove(current);
             else if (filterArray[0]) {
                 if (!user.isJoinedZone(current.getId())) cloneList.remove(current);
-            } else if (filterArray[1] && !current.getLeader().equals(zoneLeader))
+            } else if (filterArray[1] && !current.getLeader().equals(user.getUsername()))
                 cloneList.remove(current);
             else {
                 try {
@@ -180,27 +176,26 @@ public class HomeActivity extends AppCompatActivity {
     private void resetZoneListFrag() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        zoneListFrag = new ZoneListFrag(searchSortFilter(zoneArrayList.toArray()),
-                user);
+        zoneListFrag = new ZoneListFrag(searchSortFilter(zoneArrayList.toArray()));
         ft.replace(R.id.home_frag_container, zoneListFrag);
         ft.commit();
     }
 
-    private void resetUserInfoFrag(User user) {
+    private void resetUserInfoFrag() {
         int hosted = 0;
         for (Zone i : zoneArrayList)
             if (i.getLeader().equals(user.getUsername())) hosted++;
-        UserInfoFrag userInfoFrag = new UserInfoFrag(user, hosted);
+        UserInfoFrag userInfoFrag = new UserInfoFrag(hosted);
         FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
         ft1.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         ft1.replace(R.id.home_frag_container, userInfoFrag);
         ft1.commit();
     }
 
-    public void editUser(User user) {
-        UserDatabase userDatabase = new UserDatabase(this);
+    public void editUser() {
+        UserDatabase userDatabase = UserDatabase.getInstance();
         userDatabase.updateUser(user);
-        resetUserInfoFrag(user);
+        resetUserInfoFrag();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

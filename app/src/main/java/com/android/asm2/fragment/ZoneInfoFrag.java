@@ -11,19 +11,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.asm2.ActionDialog;
 import com.android.asm2.FriendDialog;
 import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
+import com.android.asm2.database.UserDatabase;
+import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
 public class ZoneInfoFrag extends Fragment {
     private final Zone zone;
-    private final boolean isLeader, joined;
 
-    public ZoneInfoFrag(Zone zone, boolean isLeader, boolean joined) {
+    public ZoneInfoFrag(Zone zone) {
         this.zone = zone;
-        this.isLeader = isLeader;
-        this.joined = joined;
     }
 
     @Override
@@ -37,6 +37,8 @@ public class ZoneInfoFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zone_info, container, false);
+        User user = UserDatabase.getCurrentUser();
+
         TextView nameTxt = view.findViewById(R.id.zone_info_frag_name_txt);
         TextView durationTxt = view.findViewById(R.id.zone_info_frag_duration_txt);
         TextView quantityTxt = view.findViewById(R.id.zone_info_frag_quantity_txt);
@@ -62,11 +64,14 @@ public class ZoneInfoFrag extends Fragment {
                     android.R.style.Theme_Dialog, zone);
             friendDialog.show();
         });
-        if (isLeader) {
-            multipleBtn.setText("Edit this zone");
-            multipleBtn.setOnClickListener(v ->
-                    ((ZoneInfoActivity) requireActivity()).changeToEditFrag(zone, false));
-        } else if (joined) {
+        if (user.getUsername().equals(zone.getLeader())) {
+            multipleBtn.setText("Show actions");
+            multipleBtn.setOnClickListener(v -> {
+                ActionDialog actionDialog = new ActionDialog(getContext(),
+                        android.R.style.Theme_Dialog, (ZoneInfoActivity) requireActivity(), zone);
+                actionDialog.show();
+            });
+        } else if (user.isJoinedZone(zone.getId())) {
             multipleBtn.setText("Leave this zone");
         } else {
             multipleBtn.setText("Enter this zone");

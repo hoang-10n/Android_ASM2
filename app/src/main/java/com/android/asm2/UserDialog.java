@@ -13,16 +13,16 @@ import com.android.asm2.model.User;
 import com.google.gson.Gson;
 
 public class UserDialog extends Dialog {
-    private User user;
-    private EditText passwordInput, emailInput, phoneInput, nameInput;
-    private RadioButton volunteer, leader;
+    private final EditText passwordInput, emailInput, phoneInput, nameInput;
+    private final RadioButton volunteer, leader;
+    private final User user;
 
-    public UserDialog(Context context, int themeResId, HomeActivity activity, User user) {
+    public UserDialog(Context context, int themeResId, HomeActivity activity) {
         super(context, themeResId);
         setContentView(R.layout.popup_user_change);
         getWindow().setBackgroundDrawableResource(android.R.drawable.screen_background_dark_transparent);
         setTitle("Change user info");
-        this.user = user;
+        user = UserDatabase.getCurrentUser();
 
         passwordInput = findViewById(R.id.user_change_popup_password_input);
         emailInput = findViewById(R.id.user_change_popup_email_input);
@@ -45,7 +45,7 @@ public class UserDialog extends Dialog {
             user.setName(nameInput.getText().toString().trim());
             user.setRole(leader.isChecked() ? "leader" : "volunteer");
             dismiss();
-            activity.editUser(user);
+            activity.editUser();
         });
     }
 

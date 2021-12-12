@@ -20,11 +20,9 @@ import java.util.ArrayList;
 
 public class ZoneListFrag extends Fragment {
     private final ArrayList<Zone> zoneArrayList;
-    private final User user;
 
-    public ZoneListFrag(ArrayList<Zone> zoneArrayList, User user) {
+    public ZoneListFrag(ArrayList<Zone> zoneArrayList) {
         this.zoneArrayList = zoneArrayList;
-        this.user = user;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class ZoneListFrag extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zone_list, container, false);
         ListView zoneListContainer = view.findViewById(R.id.zone_list_adapter_container);
-        ZoneAdapter adapter = new ZoneAdapter(getContext(), zoneArrayList, user);
+        ZoneAdapter adapter = new ZoneAdapter(getContext(), zoneArrayList);
         zoneListContainer.setAdapter(adapter);
 
         return view;

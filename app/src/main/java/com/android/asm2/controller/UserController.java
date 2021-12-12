@@ -20,7 +20,7 @@ public class UserController {
 
     public static void init(Context context) {
         queue = Volley.newRequestQueue(context);
-        database = new UserDatabase(context);
+        database = UserDatabase.initAndGetInstance(context);
     }
 
     public static void getAllUsers() {
