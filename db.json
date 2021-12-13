@@ -101,7 +101,7 @@
       "closedDate": "2021-12-3",
       "quantity": 100,
       "description": "This is description 1.",
-      "leader": "leader1",
+      "leader": "l1",
       "duration": 3,
       "startDate": "2021-12-06",
       "startTime": "09:30"
@@ -115,7 +115,7 @@
       "closedDate": "2021-11-23",
       "quantity": 100,
       "description": "This is description 2.",
-      "leader": "leader2",
+      "leader": "l2",
       "duration": 3,
       "startDate": "2021-12-06",
       "startTime": "07:30"
@@ -129,7 +129,7 @@
       "closedDate": "2021-12-1",
       "quantity": 100,
       "description": "This is description 3.",
-      "leader": "leader3",
+      "leader": "l3",
       "duration": 3,
       "startDate": "2021-12-06",
       "startTime": "08:30"
