@@ -20,8 +20,8 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
-        ImageButton closeBtn = findViewById(R.id.report_activity_close_btn);
+        setContentView(R.layout.activity_blank);
+        ImageButton closeBtn = findViewById(R.id.blank_close_btn);
 
         Intent intent = getIntent();
         boolean isAdded = (boolean) intent.getExtras().get("isAdded");
@@ -36,7 +36,7 @@ public class ReportActivity extends AppCompatActivity {
             ReportDatabase reportDatabase = ReportDatabase.getInstance();
             startFrag = new ReportInfoFrag(reportDatabase.getReportByZoneId(zoneId), zoneName);
         }
-        ft.replace(R.id.report_frag_container, startFrag);
+        ft.replace(R.id.blank_frag_container, startFrag);
         ft.commit();
 
         closeBtn.setOnClickListener(v -> finish());
@@ -46,7 +46,7 @@ public class ReportActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ReportInfoFrag reportInfoFrag = new ReportInfoFrag(report, zoneName);
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        ft.replace(R.id.report_frag_container, reportInfoFrag);
+        ft.replace(R.id.blank_frag_container, reportInfoFrag);
         ft.commit();
     }
 
@@ -54,7 +54,7 @@ public class ReportActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ReportEditFrag reportEditFrag = new ReportEditFrag(report, false, zoneName);
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        ft.replace(R.id.report_frag_container, reportEditFrag);
+        ft.replace(R.id.blank_frag_container, reportEditFrag);
         ft.commit();
     }
 }

@@ -52,8 +52,7 @@ public class ZoneAdapter extends BaseAdapter {
     @SuppressLint({"ViewHolder"})
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = LayoutInflater.from(context).
-                inflate(R.layout.adapter_zone, viewGroup, false);
+        view = LayoutInflater.from(context).inflate(R.layout.adapter_zone, viewGroup, false);
         TextView nameTxt = view.findViewById(R.id.zone_adapter_name_txt);
         TextView leaderTxt = view.findViewById(R.id.zone_adapter_leader_txt);
         TextView closedTxt = view.findViewById(R.id.zone_adapter_closed_txt);
@@ -85,7 +84,7 @@ public class ZoneAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        nameTxt.setText(zone.getName());
+        nameTxt.setText(zone.getId() + ": " + zone.getName());
         leaderTxt.setText(zone.getLeader());
         closedTxt.setText("Closed: " + zone.getClosedDate());
         timeTxt.setText(startTimeStr + " - " + endTimeStr);

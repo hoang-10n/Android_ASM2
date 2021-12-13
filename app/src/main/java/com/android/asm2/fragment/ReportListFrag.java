@@ -11,16 +11,16 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.android.asm2.R;
-import com.android.asm2.adapter.ZoneAdapter;
-import com.android.asm2.model.Zone;
+import com.android.asm2.adapter.ReportAdapter;
+import com.android.asm2.model.Report;
 
 import java.util.ArrayList;
 
-public class ZoneListFrag extends Fragment {
-    private final ArrayList<Zone> zoneArrayList;
+public class ReportListFrag extends Fragment {
+    private final ArrayList<Report> reportArrayList;
 
-    public ZoneListFrag(ArrayList<Zone> zoneArrayList) {
-        this.zoneArrayList = zoneArrayList;
+    public ReportListFrag(ArrayList<Report> reportArrayList) {
+        this.reportArrayList = reportArrayList;
     }
 
     @Override
@@ -34,9 +34,9 @@ public class ZoneListFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-        ListView zoneListContainer = view.findViewById(R.id.list_adapter_container);
-        ZoneAdapter adapter = new ZoneAdapter(getContext(), zoneArrayList);
-        zoneListContainer.setAdapter(adapter);
+        ListView reportListContainer = view.findViewById(R.id.list_adapter_container);
+        ReportAdapter adapter = new ReportAdapter(getContext(), reportArrayList);
+        reportListContainer.setAdapter(adapter);
 
         return view;
     }

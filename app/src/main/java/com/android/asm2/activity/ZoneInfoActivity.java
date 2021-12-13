@@ -22,8 +22,8 @@ public class ZoneInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zone_info);
-        ImageButton close = findViewById(R.id.zone_info_close_btn);
+        setContentView(R.layout.activity_blank);
+        ImageButton close = findViewById(R.id.blank_close_btn);
 
         Intent intent = getIntent();
         boolean isAdded = (boolean) intent.getExtras().get("isAdded");
@@ -39,7 +39,7 @@ public class ZoneInfoActivity extends AppCompatActivity {
         }
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.zone_info_frag_container, startingFrag);
+        ft.replace(R.id.blank_frag_container, startingFrag);
         ft.commit();
 
         close.setOnClickListener(v -> finish());
@@ -49,14 +49,14 @@ public class ZoneInfoActivity extends AppCompatActivity {
         ZoneEditFrag zoneEditFrag = new ZoneEditFrag(zone, isAdded);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        ft.replace(R.id.zone_info_frag_container, zoneEditFrag);
+        ft.replace(R.id.blank_frag_container, zoneEditFrag);
         ft.commit();
     }
 
     public void changeToInfoFrag() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        ft.replace(R.id.zone_info_frag_container, startingFrag);
+        ft.replace(R.id.blank_frag_container, startingFrag);
         ft.commit();
     }
 }

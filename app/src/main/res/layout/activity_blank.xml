@@ -5,23 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/layout_background"
-    android:contentDescription="Close"
-    tools:context=".activity.ReportActivity">
-
-    <ImageButton
-        android:id="@+id/report_activity_close_btn"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_margin="10dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-        app:tint="@color/black" />
+    tools:context=".activity.ZoneInfoActivity">
 
     <FrameLayout
-        android:id="@+id/report_frag_container"
+        android:id="@+id/blank_frag_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,5 +17,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
+
+
+    <ImageButton
+        android:id="@+id/blank_close_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

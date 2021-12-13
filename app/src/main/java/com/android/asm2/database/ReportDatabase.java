@@ -34,8 +34,9 @@ public class ReportDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS report(zone_id TEXT PRIMARY KEY, tested INTEGER, " +
-                "volunteer INTEGER, sample INTEGER, positive_1st INTEGER, positive INTEGER, note TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS report(zone_id TEXT PRIMARY KEY, created TEXT, " +
+                "tested INTEGER, volunteer INTEGER, sample INTEGER, positive_1st INTEGER, " +
+                "positive INTEGER, note TEXT)");
     }
 
     @Override
@@ -51,16 +52,20 @@ public class ReportDatabase extends SQLiteOpenHelper {
 
     public Report getReportByZoneId(String zoneId) {
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query("report", new String[]{"zone_id", "tested", "volunteer",
-                        "sample", "positive_1st", "positive", "note"}, "zone_id = ?",
+        Cursor cursor = db.query("report", new String[]{"zone_id", "created", "tested",
+                        "volunteer", "sample", "positive_1st", "positive", "note"},
+                "zone_id = ?",
                 new String[]{zoneId}, null, null, null);
         if (cursor != null) cursor.moveToFirst();
         else return null;
         if (cursor.getCount() == 0) return null;
-        return new Report(cursor.getString(0), Integer.parseInt(cursor.getString(1)),
-                Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)),
-                Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)),
-                cursor.getString(6));
+        return new Report(cursor.getString(0), cursor.getString(1),
+                Integer.parseInt(cursor.getString(2)),
+                Integer.parseInt(cursor.getString(3)),
+                Integer.parseInt(cursor.getString(4)),
+                Integer.parseInt(cursor.getString(5)),
+                Integer.parseInt(cursor.getString(6)),
+                cursor.getString(7));
     }
 
     public void updateReport(Report report) {
@@ -81,6 +86,7 @@ public class ReportDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("zone_id", report.getZoneId());
+        values.put("created", report.getCreated());
         values.put("tested", report.getTested());
         values.put("volunteer", report.getVolunteer());
         values.put("sample", report.getSample());
@@ -111,13 +117,13 @@ public class ReportDatabase extends SQLiteOpenHelper {
         ArrayList<Report> reportArrayList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
-                reportArrayList.add(new Report(cursor.getString(0),
-                        Integer.parseInt(cursor.getString(1)),
+                reportArrayList.add(new Report(cursor.getString(0), cursor.getString(1),
                         Integer.parseInt(cursor.getString(2)),
                         Integer.parseInt(cursor.getString(3)),
                         Integer.parseInt(cursor.getString(4)),
                         Integer.parseInt(cursor.getString(5)),
-                        cursor.getString(6)));
+                        Integer.parseInt(cursor.getString(6)),
+                        cursor.getString(7)));
             } while (cursor.moveToNext());
         }
         cursor.close();

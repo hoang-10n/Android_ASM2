@@ -66,7 +66,7 @@ public class ZoneInfoFrag extends Fragment {
                     android.R.style.Theme_Dialog, zone);
             friendDialog.show();
         });
-        if (user.getUsername().equals(zone.getLeader())) {
+        if (user.getUsername().equals(zone.getLeader()) || user.getRole().equals("admin")) {
             multipleBtn.setText("Show actions");
             multipleBtn.setOnClickListener(v -> {
                 ActionDialog actionDialog = new ActionDialog(getContext(),

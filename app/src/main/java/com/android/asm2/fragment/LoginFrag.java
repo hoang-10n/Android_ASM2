@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.asm2.activity.AdminActivity;
 import com.android.asm2.activity.HomeActivity;
 import com.android.asm2.R;
 import com.android.asm2.database.UserDatabase;
@@ -48,6 +49,10 @@ public class LoginFrag extends Fragment {
         User user = userDatabase.getUserByUsername(usernameStr);
         if (usernameStr.equals("") || passwordStr.equals("")) {
             errorTxt.setText("Fill all fields");
+        } else if (usernameStr.equals("ad") && passwordStr.equals("ad")) {
+            Intent intent = new Intent(requireContext(), AdminActivity.class);
+            UserDatabase.setCurrentUser(new User("ad"));
+            requireActivity().startActivity(intent);
         } else if (user == null) {
             errorTxt.setText("Account does not exist");
         } else if (!user.getPassword().equals(passwordStr)) {

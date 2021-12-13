@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import com.android.asm2.activity.ReportActivity;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.database.ReportDatabase;
+import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.Report;
 import com.android.asm2.model.Zone;
 
@@ -29,7 +30,8 @@ public class ActionDialog extends Dialog {
         Report report = reportDatabase.getReportByZoneId(zone.getId());
 
         if (report != null) reportBtn.setVisibility(View.VISIBLE);
-        else endBtn.setVisibility(View.VISIBLE);
+        else if (UserDatabase.getCurrentUser().getRole().equals("leader"))
+            endBtn.setVisibility(View.VISIBLE);
 
         closeBtn.setOnClickListener(v -> dismiss());
         editBtn.setOnClickListener(v -> {

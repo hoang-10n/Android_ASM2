@@ -11,6 +11,16 @@ public class User {
     private String role;
     private ArrayList<String> joinedZones;
 
+    public User(String username) {
+        this.username = username;
+        this.password = null;
+        this.email = null;
+        this.phone = null;
+        this.name = null;
+        this.role = "admin";
+        this.joinedZones = null;
+    }
+
     public User(String username, String password, String email, String phone, String name, String role, ArrayList<String> joinedZones) {
         this.username = username;
         this.password = password;

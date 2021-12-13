@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.asm2.R;
@@ -15,6 +16,11 @@ import com.android.asm2.UserDialog;
 import com.android.asm2.activity.HomeActivity;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
+import com.google.gson.Gson;
+import com.google.zxing.WriterException;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 
 public class UserInfoFrag extends Fragment {
     private int hosted;
@@ -43,10 +49,17 @@ public class UserInfoFrag extends Fragment {
         TextView hostedTxt = view.findViewById(R.id.user_info_frag_hosted_txt);
         Button logoutBtn = view.findViewById(R.id.user_info_frag_logout_btn);
         Button changePopupBtn = view.findViewById(R.id.user_info_frag_change_popup_btn);
+        ImageView imageView = view.findViewById(R.id.user_info_frag_qr_image);
         UserDialog userDialog = new UserDialog(getContext(), android.R.style.Theme_Dialog,
                 (HomeActivity) requireActivity());
 
         User user = UserDatabase.getCurrentUser();
+        try {
+            QRGEncoder encoder = new QRGEncoder(new Gson().toJson(user), null, QRGContents.Type.TEXT, 300);
+            imageView.setImageBitmap(encoder.encodeAsBitmap());
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
         usernameTxt.setText(user.getUsername());
         passwordTxt.setText(user.getPassword());
         emailTxt.setText(user.getEmail());

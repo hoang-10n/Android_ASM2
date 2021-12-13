@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.android.asm2.model.User;
+import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -140,5 +141,20 @@ public class UserDatabase extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
         return count == 0;
+    }
+
+    public ArrayList<User> getAllUsers() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from user", null);
+        ArrayList<User> userArrayList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                userArrayList.add(new User(cursor.getString(0), cursor.getString(1),
+                        cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), stringToArrayList(cursor.getString(6))));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return userArrayList;
     }
 }

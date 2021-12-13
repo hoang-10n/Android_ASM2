@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/layout_background"
+    tools:context=".activity.AdminActivity">
+
+    <Button
+        android:id="@+id/admin_zone_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/secondary_text_light"
+        android:enabled="false"
+        android:text="zones"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/admin_user_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/admin_user_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/secondary_text_light"
+        android:enabled="true"
+        android:text="users"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/admin_report_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/admin_zone_btn" />
+
+    <Button
+        android:id="@+id/admin_report_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/secondary_text_light"
+        android:enabled="true"
+        android:text="reports"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/admin_user_btn" />
+
+    <EditText
+        android:id="@+id/admin_search_input"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/adapter_border"
+        android:ems="10"
+        android:hint="Zone name"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/admin_search_btn"
+        app:layout_constraintEnd_toStartOf="@+id/admin_search_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/admin_logout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/admin_search_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/admin_search_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Search"
+        app:layout_constraintEnd_toStartOf="@+id/admin_logout_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/admin_search_input"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_search"
+        app:tint="@color/black" />
+
+    <FrameLayout
+        android:id="@+id/admin_frag_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/admin_zone_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_search_input">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

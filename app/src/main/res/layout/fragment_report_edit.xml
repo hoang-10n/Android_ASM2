@@ -64,6 +64,7 @@
                 android:hint="TESTED"
                 android:inputType="number"
                 android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -90,6 +91,7 @@
                 android:hint="VOLUNTEER"
                 android:inputType="number"
                 android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -116,6 +118,7 @@
                 android:hint="SAMPLE"
                 android:inputType="number"
                 android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -142,6 +145,7 @@
                 android:hint="POSITIVE 1ST"
                 android:inputType="number"
                 android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -168,6 +172,7 @@
                 android:hint="POSITIVE 2ND"
                 android:inputType="number"
                 android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -199,6 +204,7 @@
                 android:lines="2"
                 android:maxLines="10"
                 android:textColor="@color/black"
+                android:textColorHint="@android:color/darker_gray"
                 android:textSize="16sp" />
         </LinearLayout>
     </TableLayout>

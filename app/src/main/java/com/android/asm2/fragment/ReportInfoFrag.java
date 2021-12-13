@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.asm2.R;
 import com.android.asm2.activity.ReportActivity;
+import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.Report;
 
 public class ReportInfoFrag extends Fragment {
@@ -41,6 +42,9 @@ public class ReportInfoFrag extends Fragment {
         TextView positiveTxt = view.findViewById(R.id.report_info_frag_positive_txt);
         TextView noteTxt = view.findViewById(R.id.report_info_frag_note_txt);
         Button editBtn = view.findViewById(R.id.report_info_frag_edit_btn);
+
+        if (UserDatabase.getCurrentUser().getRole().equals("admin"))
+            editBtn.setVisibility(View.VISIBLE);
 
         nameTxt.setText(report.getZoneId() + ": " + zoneName);
         testedTxt.setText(report.getTested() + "");

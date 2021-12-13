@@ -7,11 +7,10 @@
     tools:context=".fragment.UserInfoFrag">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:id="@+id/user_info_frag_qr_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="20sp"
-        android:background="@drawable/adapter_border"
         android:src="@drawable/anonymous"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/user_info_frag_qr_image">
 
         <TableRow
             android:layout_width="match_parent"
