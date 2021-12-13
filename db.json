@@ -166,6 +166,48 @@
       "duration": 3,
       "startDate": "2021-12-06",
       "startTime": "08:30"
+    },
+    {
+      "id": "Z7",
+      "name": "Zone 7",
+      "latitude": 10.789515,
+      "longitude": 106.638513,
+      "createdDate": "2021-11-21",
+      "closedDate": "2021-12-01",
+      "quantity": 100,
+      "description": "This is description 7.",
+      "leader": "l1",
+      "duration": 3,
+      "startDate": "2021-12-06",
+      "startTime": "09:30"
+    },
+    {
+      "id": "Z8",
+      "name": "Zone 8",
+      "latitude": 10.700833,
+      "longitude": 106.776238,
+      "createdDate": "2021-11-10",
+      "closedDate": "2021-11-21",
+      "quantity": 100,
+      "description": "This is description 8.",
+      "leader": "l2",
+      "duration": 3,
+      "startDate": "2021-12-06",
+      "startTime": "07:30"
+    },
+    {
+      "id": "Z9",
+      "name": "Zone 9",
+      "latitude": 10.669625,
+      "longitude": 106.72157,
+      "createdDate": "2021-11-20",
+      "closedDate": "2021-12-03",
+      "quantity": 100,
+      "description": "This is description 9.",
+      "leader": "l3",
+      "duration": 3,
+      "startDate": "2021-12-06",
+      "startTime": "08:30"
     }
   ],
   "reports": [
