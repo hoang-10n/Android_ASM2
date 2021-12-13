@@ -213,6 +213,7 @@
   "reports": [
     {
       "zoneId": "Z1",
+      "created": "2021/12/13 20:30",
       "tested": 1000,
       "volunteer": 100,
       "sample": 5000,
@@ -222,6 +223,7 @@
     },
     {
       "zoneId": "Z2",
+      "created": "2021/12/13 20:30",
       "tested": 2000,
       "volunteer": 200,
       "sample": 4000,
