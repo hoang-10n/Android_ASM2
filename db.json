@@ -135,7 +135,7 @@
       "startTime": "08:30"
     }
   ],
-  "report": [
+  "reports": [
     {
       "zoneId": "Z1",
       "tested": 1000,
