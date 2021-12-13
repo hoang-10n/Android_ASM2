@@ -41,4 +41,20 @@ public class ReportActivity extends AppCompatActivity {
 
         closeBtn.setOnClickListener(v -> finish());
     }
+
+    public void setInfoFrag(Report report, String zoneName) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ReportInfoFrag reportInfoFrag = new ReportInfoFrag(report, zoneName);
+        ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        ft.replace(R.id.report_frag_container, reportInfoFrag);
+        ft.commit();
+    }
+
+    public void setEditFrag(Report report, String zoneName) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ReportEditFrag reportEditFrag = new ReportEditFrag(report, false, zoneName);
+        ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        ft.replace(R.id.report_frag_container, reportEditFrag);
+        ft.commit();
+    }
 }

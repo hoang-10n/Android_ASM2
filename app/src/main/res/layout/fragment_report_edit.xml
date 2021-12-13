@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/adapter_border"
-        app:layout_constraintBottom_toTopOf="@+id/report_edit_frag_error_txt"
+        app:layout_constraintBottom_toTopOf="@+id/report_edit_frag_save_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -202,19 +202,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </TableLayout>
-
-    <TextView
-        android:id="@+id/report_edit_frag_error_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fill all fields"
-        android:textColor="@android:color/holo_red_dark"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/report_edit_frag_save_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout5" />
 
     <Button
         android:id="@+id/report_edit_frag_save_btn"

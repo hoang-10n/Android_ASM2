@@ -214,7 +214,7 @@
         android:layout_height="wrap_content"
         android:text="Edit this report"
         android:textColor="@color/white"
-        android:visibility="gone"
+        android:visibility="visible"
         app:backgroundTint="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

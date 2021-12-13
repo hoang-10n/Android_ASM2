@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.asm2.R;
+import com.android.asm2.activity.ReportActivity;
 import com.android.asm2.model.Report;
 
 public class ReportInfoFrag extends Fragment {
@@ -38,6 +40,7 @@ public class ReportInfoFrag extends Fragment {
         TextView positive1stTxt = view.findViewById(R.id.report_info_frag_positive_1st_txt);
         TextView positiveTxt = view.findViewById(R.id.report_info_frag_positive_txt);
         TextView noteTxt = view.findViewById(R.id.report_info_frag_note_txt);
+        Button editBtn = view.findViewById(R.id.report_info_frag_edit_btn);
 
         nameTxt.setText(report.getZoneId() + ": " + zoneName);
         testedTxt.setText(report.getTested() + "");
@@ -46,6 +49,8 @@ public class ReportInfoFrag extends Fragment {
         positive1stTxt.setText(report.getPositive1st() + "");
         positiveTxt.setText(report.getPositive() + "");
         noteTxt.setText(report.getNote());
+
+        editBtn.setOnClickListener(v -> ((ReportActivity) requireActivity()).setEditFrag(report, zoneName));
         return view;
     }
 }

@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.asm2.R;
+import com.android.asm2.activity.ReportActivity;
+import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.model.Report;
 
 public class ReportEditFrag extends Fragment {
@@ -42,18 +45,43 @@ public class ReportEditFrag extends Fragment {
         positive1stInput = view.findViewById(R.id.report_edit_frag_positive_1st_input);
         positiveInput = view.findViewById(R.id.report_edit_frag_positive_input);
         noteInput = view.findViewById(R.id.report_edit_frag_note_input);
+        Button saveBtn = view.findViewById(R.id.report_edit_frag_save_btn);
+        Button discardBtn = view.findViewById(R.id.report_edit_frag_discard_btn);
 
         nameTxt.setText(report.getZoneId() + ": " + zoneName);
         setInput();
+
+        saveBtn.setOnClickListener(v -> {
+            report.setTested(getIntegerInput(testedInput));
+            report.setVolunteer(getIntegerInput(volunteerInput));
+            report.setSample(getIntegerInput(sampleInput));
+            report.setPositive(getIntegerInput(positiveInput));
+            report.setPositive1st(getIntegerInput(positive1stInput));
+            report.setNote(noteInput.getText().toString());
+            ReportDatabase reportDatabase = ReportDatabase.getInstance();
+            if (isAdded) reportDatabase.addReport(report);
+            else reportDatabase.updateReport(report);
+            ((ReportActivity) requireActivity()).setInfoFrag(report, zoneName);
+        });
+
+        discardBtn.setOnClickListener(v -> {
+            setInput();
+            if (!isAdded) ((ReportActivity) requireActivity()).setInfoFrag(report, zoneName);
+        });
         return view;
     }
 
     private void setInput() {
-        testedInput.setText(report.getTested() +"");
-        volunteerInput.setText(report.getVolunteer() +"");
-        sampleInput.setText(report.getSample() +"");
-        positive1stInput.setText(report.getPositive1st() +"");
-        positiveInput.setText(report.getPositive() +"");
+        testedInput.setText(report.getTested() + "");
+        volunteerInput.setText(report.getVolunteer() + "");
+        sampleInput.setText(report.getSample() + "");
+        positive1stInput.setText(report.getPositive1st() + "");
+        positiveInput.setText(report.getPositive() + "");
         noteInput.setText(report.getNote());
+    }
+
+    private int getIntegerInput(EditText editText) {
+        String value = editText.getText().toString();
+        return value.equals("") ? 0 : Integer.parseInt(value);
     }
 }
