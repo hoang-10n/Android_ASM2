@@ -4,8 +4,8 @@
       "name": "Volunteer Vol1",
       "email": "volunteer1@m.com",
       "phone": "00000",
-      "username": "volunteer1",
-      "password": "volunteer1",
+      "username": "v1",
+      "password": "v1",
       "role": "volunteer",
       "joinedZones": ["Z1", "Z2", "Z3"]
     },
@@ -13,8 +13,8 @@
       "name": "Volunteer Vol2",
       "email": "volunteer2@m.com",
       "phone": "00000",
-      "username": "volunteer2",
-      "password": "volunteer2",
+      "username": "v2",
+      "password": "v2",
       "role": "volunteer",
       "joinedZones": ["Z1"]
     },
@@ -22,8 +22,8 @@
       "name": "Volunteer Vol3",
       "email": "volunteer3@m.com",
       "phone": "00000",
-      "username": "volunteer3",
-      "password": "volunteer3",
+      "username": "v3",
+      "password": "v3",
       "role": "volunteer",
       "joinedZones": ["Z1", "Z3"]
     },
@@ -31,8 +31,8 @@
       "name": "Volunteer Vol4",
       "email": "volunteer4@m.com",
       "phone": "00000",
-      "username": "volunteer4",
-      "password": "volunteer4",
+      "username": "v4",
+      "password": "v4",
       "role": "volunteer",
       "joinedZones": ["Z3"]
     },
@@ -40,8 +40,8 @@
       "name": "Volunteer Vol5",
       "email": "volunteer5@m.com",
       "phone": "00000",
-      "username": "volunteer5",
-      "password": "volunteer5",
+      "username": "v5",
+      "password": "v5",
       "role": "volunteer",
       "joinedZones": []
     },
@@ -49,8 +49,8 @@
       "name": "Volunteer Vol6",
       "email": "volunteer6@m.com",
       "phone": "00000",
-      "username": "volunteer6",
-      "password": "volunteer6",
+      "username": "v6",
+      "password": "v6",
       "role": "volunteer",
       "joinedZones": ["Z3", "Z2"]
     },
@@ -58,8 +58,8 @@
       "name": "Leader Lea1",
       "email": "leader1@m.com",
       "phone": "00000",
-      "username": "leader1",
-      "password": "leader1",
+      "username": "l1",
+      "password": "l1",
       "role": "leader",
       "joinedZones": ["Z2"]
     },
@@ -67,8 +67,8 @@
       "name": "Leader Lea2",
       "email": "leader2@m.com",
       "phone": "00000",
-      "username": "leader2",
-      "password": "leader2",
+      "username": "l2",
+      "password": "l2",
       "role": "leader",
       "joinedZones": ["Z3", "Z1"]
     },
@@ -76,8 +76,8 @@
       "name": "Leader Lea3",
       "email": "leader3@m.com",
       "phone": "00000",
-      "username": "leader3",
-      "password": "leader3",
+      "username": "l3",
+      "password": "l3",
       "role": "leader",
       "joinedZones": []
     },
@@ -138,7 +138,7 @@
   "report": [
     {
       "zoneId": "Z1",
-      "testedPeople": 1000,
+      "tested": 1000,
       "volunteer": 100,
       "sample": 5000,
       "positiveFirstTest": 600,
@@ -146,7 +146,7 @@
     },
     {
       "zoneId": "Z2",
-      "testedPeople": 2000,
+      "tested": 2000,
       "volunteer": 200,
       "sample": 4000,
       "positiveFirstTest": 300,
