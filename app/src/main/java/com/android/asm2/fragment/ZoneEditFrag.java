@@ -31,7 +31,7 @@ public class ZoneEditFrag extends Fragment {
     private final boolean isAdded;
     private final String[] closedDateStr, startDateStr, startTimeStr;
     private EditText nameInput, durationInput, descriptionInput, closedDateInput,
-            startDateInput, startTimeInput;
+            startDateInput, startTimeInput, quantityInput;
     private TextView latTxt, longTxt, errorTxt;
 
     public ZoneEditFrag(Zone zone, boolean isAdded) {
@@ -62,6 +62,7 @@ public class ZoneEditFrag extends Fragment {
         startDateInput = view.findViewById(R.id.zone_edit_frag_start_date_input);
         startTimeInput = view.findViewById(R.id.zone_edit_frag_start_time_input);
         descriptionInput = view.findViewById(R.id.zone_edit_frag_description_input);
+        quantityInput = view.findViewById(R.id.zone_edit_frag_quantity_input);
         ImageButton backBtn = view.findViewById(R.id.zone_edit_frag_back_btn);
         Button saveBtn = view.findViewById(R.id.zone_edit_frag_save_btn);
         Button restoreBtn = view.findViewById(R.id.zone_edit_frag_restore_btn);
@@ -140,6 +141,7 @@ public class ZoneEditFrag extends Fragment {
         startDateInput.setText(zone.getStartDate());
         startTimeInput.setText(zone.getStartTime());
         descriptionInput.setText(zone.getDescription());
+        quantityInput.setText(zone.getQuantity() + "");
     }
 
     private boolean isEmptyInput() {
@@ -165,9 +167,11 @@ public class ZoneEditFrag extends Fragment {
         if (isEmptyInput()) return;
         String nameStr = nameInput.getText().toString().trim();
         String durationStr = durationInput.getText().toString();
+        String quantityStr = quantityInput.getText().toString();
         float durationFloat = durationStr.equals(".") ? 0 : Float.parseFloat(durationStr);
+        int quantityInt = quantityStr.equals("") ? 0 : Integer.parseInt(quantityStr);
         Zone saveZone = new Zone(zone.getId(), nameStr, zone.getLatitude(), zone.getLongitude(),
-                durationFloat, zone.getQuantity(), zone.getLeader(), zone.getCreatedDate(),
+                durationFloat, quantityInt, zone.getLeader(), zone.getCreatedDate(),
                 closedDateStr[0], startDateStr[0], startTimeStr[0],
                 descriptionInput.getText().toString());
         ZoneDatabase zoneDatabase = ZoneDatabase.getInstance();

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.android.asm2.R;
+import com.android.asm2.controller.ReportController;
 import com.android.asm2.controller.UserController;
 import com.android.asm2.controller.ZoneController;
 import com.android.asm2.fragment.LoginFrag;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         UserController.getAllUsers();
         ZoneController.init(this);
         ZoneController.getAllZones();
+        ReportController.init(this);
+        ReportController.getAllReports();
 
         LoginFrag loginFrag = new LoginFrag();
         RegisterFrag registerFrag = new RegisterFrag();

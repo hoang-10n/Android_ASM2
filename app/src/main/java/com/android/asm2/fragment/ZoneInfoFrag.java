@@ -21,6 +21,8 @@ import com.android.asm2.model.Zone;
 
 public class ZoneInfoFrag extends Fragment {
     private final Zone zone;
+    private Button multipleBtn;
+    private User user;
 
     public ZoneInfoFrag(Zone zone) {
         this.zone = zone;
@@ -37,8 +39,9 @@ public class ZoneInfoFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zone_info, container, false);
-        User user = UserDatabase.getCurrentUser();
+        user = UserDatabase.getCurrentUser();
 
+        multipleBtn = view.findViewById(R.id.zone_info_frag_multiple_btn);
         TextView nameTxt = view.findViewById(R.id.zone_info_frag_name_txt);
         TextView durationTxt = view.findViewById(R.id.zone_info_frag_duration_txt);
         TextView quantityTxt = view.findViewById(R.id.zone_info_frag_quantity_txt);
@@ -47,7 +50,6 @@ public class ZoneInfoFrag extends Fragment {
         TextView startTxt = view.findViewById(R.id.zone_info_frag_start_txt);
         TextView leaderTxt = view.findViewById(R.id.zone_info_frag_leader_txt);
         TextView descriptionTxt = view.findViewById(R.id.zone_info_frag_description_txt);
-        Button multipleBtn = view.findViewById(R.id.zone_info_frag_multiple_btn);
         Button friendBtn = view.findViewById(R.id.zone_info_frag_friend_btn);
 
         nameTxt.setText(zone.getName());
@@ -72,11 +74,31 @@ public class ZoneInfoFrag extends Fragment {
                 actionDialog.show();
             });
         } else if (user.isJoinedZone(zone.getId())) {
-            multipleBtn.setText("Leave this zone");
+            setToLeaveBtn();
         } else {
-            multipleBtn.setText("Enter this zone");
+            setToJoinBtn();
         }
 
         return view;
+    }
+
+    private void setToJoinBtn() {
+        multipleBtn.setText("Enter this zone");
+        multipleBtn.setOnClickListener(v -> {
+            user.joinZone(zone.getId());
+            UserDatabase userDatabase = UserDatabase.getInstance();
+            userDatabase.updateUser(user);
+            setToLeaveBtn();
+        });
+    }
+
+    private void setToLeaveBtn() {
+        multipleBtn.setText("Leave this zone");
+        multipleBtn.setOnClickListener(v -> {
+            user.leaveZone(zone.getId());
+            UserDatabase userDatabase = UserDatabase.getInstance();
+            userDatabase.updateUser(user);
+            setToJoinBtn();
+        });
     }
 }
