@@ -9,6 +9,16 @@ public class Report {
     private int positive;
     private String note;
 
+    public Report(String zoneId) {
+        this.zoneId = zoneId;
+        this.tested = 0;
+        this.volunteer = 0;
+        this.sample = 0;
+        this.positive1st = 0;
+        this.positive = 0;
+        this.note = "";
+    }
+
     public Report(String zoneId, int tested, int volunteer, int sample, int positive1st, int positive, String note) {
         this.zoneId = zoneId;
         this.tested = tested;

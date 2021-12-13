@@ -93,6 +93,7 @@
         android:background="@drawable/adapter_border"
         android:ellipsize="none"
         android:gravity="top|left"
+        android:scrollbars="vertical"
         android:text="THIS IS THE LONGEST DESCRIPTION I HAVE EVER SEEN. IT STRETCHES FROM HERE TO HERE"
         android:textColor="@color/black"
         android:textSize="16sp"

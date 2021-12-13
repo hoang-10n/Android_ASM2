@@ -299,9 +299,9 @@
 
     <Button
         android:id="@+id/zone_edit_frag_save_btn"
-        android:layout_width="137dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Save changes"
         android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -311,27 +311,14 @@
 
     <Button
         android:id="@+id/zone_edit_frag_restore_btn"
-        android:layout_width="137dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Restore"
+        android:text="Restore Changes"
         android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/zone_edit_frag_delete_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/zone_edit_frag_save_btn" />
-
-    <Button
-        android:id="@+id/zone_edit_frag_delete_btn"
-        android:layout_width="137dp"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/design_default_color_error"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/zone_edit_frag_restore_btn" />
+        app:layout_constraintStart_toEndOf="@+id/zone_edit_frag_save_btn" />
 
     <TextView
         android:id="@+id/zone_edit_frag_leader_txt"

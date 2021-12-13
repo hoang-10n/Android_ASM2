@@ -2,10 +2,12 @@ package com.android.asm2;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.android.asm2.activity.ReportActivity;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.model.Report;
@@ -36,12 +38,22 @@ public class ActionDialog extends Dialog {
         });
         endBtn.setOnClickListener(v -> {
             dismiss();
+            Intent intent = new Intent(activity, ReportActivity.class);
+            intent.putExtra("isAdded", true);
+            intent.putExtra("zoneId", zone.getId());
+            intent.putExtra("zoneName", zone.getName());
+            activity.startActivity(intent);
         });
         volunteerListBtn.setOnClickListener(v -> {
             dismiss();
         });
         reportBtn.setOnClickListener(v -> {
             dismiss();
+            Intent intent = new Intent(activity, ReportActivity.class);
+            intent.putExtra("isAdded", false);
+            intent.putExtra("zoneId", zone.getId());
+            intent.putExtra("zoneName", zone.getName());
+            activity.startActivity(intent);
         });
     }
 }

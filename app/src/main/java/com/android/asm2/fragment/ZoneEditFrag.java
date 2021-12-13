@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
+import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.model.Zone;
 import com.google.gson.Gson;
@@ -66,7 +67,6 @@ public class ZoneEditFrag extends Fragment {
         ImageButton backBtn = view.findViewById(R.id.zone_edit_frag_back_btn);
         Button saveBtn = view.findViewById(R.id.zone_edit_frag_save_btn);
         Button restoreBtn = view.findViewById(R.id.zone_edit_frag_restore_btn);
-        Button deleteBtn = view.findViewById(R.id.zone_edit_frag_delete_btn);
         errorTxt = view.findViewById(R.id.zone_edit_frag_error_txt);
 
         if (isAdded) backBtn.setVisibility(View.GONE);
@@ -102,11 +102,6 @@ public class ZoneEditFrag extends Fragment {
         backBtn.setOnClickListener(v -> ((ZoneInfoActivity) requireActivity()).changeToInfoFrag());
         restoreBtn.setOnClickListener(v -> setInput());
         saveBtn.setOnClickListener((v -> saveZone()));
-        deleteBtn.setOnClickListener(v -> {
-            ZoneDatabase zoneDatabase = ZoneDatabase.getInstance();
-            zoneDatabase.deleteZoneById(zone.getId());
-            requireActivity().finish();
-        });
 
         return view;
     }
