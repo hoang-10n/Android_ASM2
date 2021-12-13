@@ -80,15 +80,6 @@
       "password": "l3",
       "role": "leader",
       "joinedZones": []
-    },
-    {
-      "name": "Admin Adm1",
-      "email": "admin1@m.com",
-      "phone": "00000",
-      "username": "a1",
-      "password": "a1",
-      "role": "admin",
-      "joinedZones": []
     }
   ],
   "zones": [
@@ -129,6 +120,48 @@
       "closedDate": "2021-12-1",
       "quantity": 100,
       "description": "This is description 3.",
+      "leader": "l3",
+      "duration": 3,
+      "startDate": "2021-12-06",
+      "startTime": "08:30"
+    },
+    {
+      "id": "Z4",
+      "name": "Zone 4",
+      "latitude": 10.789515,
+      "longitude": 106.638513,
+      "createdDate": "2021-11-28",
+      "closedDate": "2021-12-05",
+      "quantity": 100,
+      "description": "This is description 4.",
+      "leader": "l1",
+      "duration": 3,
+      "startDate": "2021-12-06",
+      "startTime": "09:30"
+    },
+    {
+      "id": "Z2",
+      "name": "Zone 2",
+      "latitude": 10.700833,
+      "longitude": 106.776238,
+      "createdDate": "2021-11-14",
+      "closedDate": "2021-11-24",
+      "quantity": 100,
+      "description": "This is description 5.",
+      "leader": "l2",
+      "duration": 3,
+      "startDate": "2021-12-06",
+      "startTime": "07:30"
+    },
+    {
+      "id": "Z3",
+      "name": "Zone 3",
+      "latitude": 10.669625,
+      "longitude": 106.72157,
+      "createdDate": "2021-11-26",
+      "closedDate": "2021-12-02",
+      "quantity": 100,
+      "description": "This is description 6.",
       "leader": "l3",
       "duration": 3,
       "startDate": "2021-12-06",
