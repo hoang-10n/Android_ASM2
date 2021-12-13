@@ -140,8 +140,8 @@
       "startTime": "09:30"
     },
     {
-      "id": "Z2",
-      "name": "Zone 2",
+      "id": "Z5",
+      "name": "Zone 5",
       "latitude": 10.700833,
       "longitude": 106.776238,
       "createdDate": "2021-11-14",
@@ -154,8 +154,8 @@
       "startTime": "07:30"
     },
     {
-      "id": "Z3",
-      "name": "Zone 3",
+      "id": "Z6",
+      "name": "Zone 6",
       "latitude": 10.669625,
       "longitude": 106.72157,
       "createdDate": "2021-11-26",
