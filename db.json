@@ -142,7 +142,8 @@
       "volunteer": 100,
       "sample": 5000,
       "positiveFirstTest": 600,
-      "positive": 100
+      "positive": 100,
+      "note": "This is note 1."
     },
     {
       "zoneId": "Z2",
@@ -150,7 +151,8 @@
       "volunteer": 200,
       "sample": 4000,
       "positiveFirstTest": 300,
-      "positive": 100
+      "positive": 100,
+      "note": "This is note 2."
     }
   ]
 }
