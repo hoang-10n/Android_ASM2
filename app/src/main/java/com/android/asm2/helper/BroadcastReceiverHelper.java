@@ -37,6 +37,12 @@ public class BroadcastReceiverHelper extends BroadcastReceiver {
             case "Report added":
                 notificationHelper.createNotification("Table 'report' changed", "A new report is added");
                 break;
+            case "User updated":
+                notificationHelper.createNotification("Table 'user' changed", "A existing user is updated");
+                break;
+            case "User added":
+                notificationHelper.createNotification("Table 'user' changed", "A new user is added");
+                break;
         }
     }
 }

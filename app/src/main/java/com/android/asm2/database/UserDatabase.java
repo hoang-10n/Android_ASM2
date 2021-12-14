@@ -3,17 +3,21 @@ package com.android.asm2.database;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.android.asm2.helper.BroadcastReceiverHelper;
 import com.android.asm2.model.User;
-import com.android.asm2.model.Zone;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UserDatabase extends SQLiteOpenHelper {
+    private Context context;
     private static UserDatabase userDatabase;
     private static User currentUser;
 
@@ -22,6 +26,7 @@ public class UserDatabase extends SQLiteOpenHelper {
 
     private UserDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     public static UserDatabase getInstance() {
@@ -29,6 +34,11 @@ public class UserDatabase extends SQLiteOpenHelper {
     }
 
     public static UserDatabase initAndGetInstance(Context context) {
+        BroadcastReceiverHelper helper = BroadcastReceiverHelper.getInstance();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("User updated");
+        filter.addAction("User added");
+        context.registerReceiver(helper, filter);
         userDatabase = new UserDatabase(context);
         return userDatabase;
     }
@@ -103,6 +113,9 @@ public class UserDatabase extends SQLiteOpenHelper {
     }
 
     public void updateUser(User user) {
+        Intent intent = new Intent("User updated");
+        context.sendBroadcast(intent);
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("password", user.getPassword());
@@ -116,6 +129,9 @@ public class UserDatabase extends SQLiteOpenHelper {
     }
 
     public void addUser(User user) {
+        Intent intent = new Intent("User added");
+        context.sendBroadcast(intent);
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("username", user.getUsername());
@@ -156,5 +172,15 @@ public class UserDatabase extends SQLiteOpenHelper {
         }
         cursor.close();
         return userArrayList;
+    }
+
+    public void handleData(User newUser) {
+        User existingUser = getUserByUsername(newUser.getUsername());
+        if (existingUser == null) addUser(newUser);
+        else {
+            Gson gson = new Gson();
+            if (!gson.toJson(newUser).equals(gson.toJson(existingUser)))
+                updateUser(newUser);
+        }
     }
 }

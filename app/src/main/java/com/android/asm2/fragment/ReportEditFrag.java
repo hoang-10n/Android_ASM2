@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.android.asm2.R;
 import com.android.asm2.activity.ReportActivity;
+import com.android.asm2.controller.ReportController;
 import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.model.Report;
 
@@ -58,9 +59,11 @@ public class ReportEditFrag extends Fragment {
             report.setPositive(getIntegerInput(positiveInput));
             report.setPositive1st(getIntegerInput(positive1stInput));
             report.setNote(noteInput.getText().toString());
-            ReportDatabase reportDatabase = ReportDatabase.getInstance();
-            if (isAdded) reportDatabase.addReport(report);
-            else reportDatabase.updateReport(report);
+
+            //TODO change to controller
+            if (isAdded) ReportController.addReport(report);
+            else ReportController.updateReport(report);
+
             ((ReportActivity) requireActivity()).setInfoFrag(report, zoneName);
         });
 

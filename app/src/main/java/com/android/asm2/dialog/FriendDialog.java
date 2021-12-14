@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.asm2.R;
+import com.android.asm2.controller.UserController;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
@@ -40,7 +41,8 @@ public class FriendDialog extends Dialog {
                     return;
                 } else {
                     user.joinZone(zone.getId());
-                    userDatabase.updateUser(user);
+                    //TODO change to controller
+                    UserController.updateUser(user);
                 }
             }
             errorTxt.setVisibility(View.GONE);

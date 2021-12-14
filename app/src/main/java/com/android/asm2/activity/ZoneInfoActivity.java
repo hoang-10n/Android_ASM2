@@ -18,6 +18,7 @@ import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
 public class ZoneInfoActivity extends AppCompatActivity {
+    private ZoneDatabase zoneDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +26,18 @@ public class ZoneInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blank);
         ImageButton close = findViewById(R.id.blank_close_btn);
 
+        zoneDatabase = ZoneDatabase.getInstance();
+
         Intent intent = getIntent();
         int startPage = (int) intent.getExtras().get("startPage");
         String zoneId = (String) intent.getExtras().get("id");
         Fragment startingFrag;
 
         if (startPage == 0) {
-            ZoneDatabase database = ZoneDatabase.getInstance();
-            Zone zone = database.getZoneById(zoneId);
+            Zone zone = zoneDatabase.getZoneById(zoneId);
             startingFrag = new ZoneMapFrag(zone);
         } else if (startPage == 1) {
-            ZoneDatabase database = ZoneDatabase.getInstance();
-            Zone zone = database.getZoneById(zoneId);
+            Zone zone = zoneDatabase.getZoneById(zoneId);
             startingFrag = new ZoneInfoFrag(zone);
         } else {
             User user = UserDatabase.getCurrentUser();
@@ -73,5 +74,21 @@ public class ZoneInfoActivity extends AppCompatActivity {
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         ft.replace(R.id.blank_frag_container, zoneMapFrag);
         ft.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                Bundle bundle = data.getExtras();
+                Zone zone = zoneDatabase.getZoneById((String) bundle.get("id"));
+                float newLat = Double.valueOf((double) bundle.get("newLat")).floatValue();
+                float newLong = Double.valueOf((double) bundle.get("newLong")).floatValue();
+                zone.setLatitude(newLat);
+                zone.setLongitude(newLong);
+                changeToEditFrag(zone, false);
+            }
+        }
     }
 }

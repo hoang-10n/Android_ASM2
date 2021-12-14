@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.android.asm2.controller.UserController;
 import com.android.asm2.dialog.ActionDialog;
 import com.android.asm2.dialog.FriendDialog;
 import com.android.asm2.R;
@@ -92,8 +93,8 @@ public class ZoneInfoFrag extends Fragment {
         multipleBtn.setText("Enter this zone");
         multipleBtn.setOnClickListener(v -> {
             user.joinZone(zone.getId());
-            UserDatabase userDatabase = UserDatabase.getInstance();
-            userDatabase.updateUser(user);
+            //TODO change to controller
+            UserController.updateUser(user);
             setToLeaveBtn();
         });
     }
@@ -102,8 +103,8 @@ public class ZoneInfoFrag extends Fragment {
         multipleBtn.setText("Leave this zone");
         multipleBtn.setOnClickListener(v -> {
             user.leaveZone(zone.getId());
-            UserDatabase userDatabase = UserDatabase.getInstance();
-            userDatabase.updateUser(user);
+            //TODO change to controller
+            UserController.updateUser(user);
             setToJoinBtn();
         });
     }

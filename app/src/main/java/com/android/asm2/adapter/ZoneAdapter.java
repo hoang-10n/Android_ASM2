@@ -97,15 +97,16 @@ public class ZoneAdapter extends BaseAdapter {
         if (isStarted) startTxt.setTextColor(Color.parseColor("#FF0000"));
 
         mapBtn.setOnClickListener(v -> {
+            Intent intent;
             if (!isStarting) {
-                Intent intent = new Intent(context, ZoneInfoActivity.class);
+                intent = new Intent(context, ZoneInfoActivity.class);
                 intent.putExtra("id", zone.getId());
                 intent.putExtra("startPage", 0);
-                ((AppCompatActivity) context).startActivityForResult(intent, 100);
+//                ((AppCompatActivity) context).startActivityForResult(intent, 100);
             } else {
-                Intent intent = new Intent(context, MainActivity.class);
-                context.startActivity(intent);
+                intent = new Intent(context, MainActivity.class);
             }
+            context.startActivity(intent);
         });
 
         return view;

@@ -9,9 +9,11 @@ import com.android.asm2.model.Report;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +43,32 @@ public class ReportController {
                     refreshContent();
                 }, Throwable::printStackTrace);
         queue.add(userArrayRequest);
+    }
+
+    public static void addReport(Report report) {
+        try {
+            JSONObject jsonObject = new JSONObject(new Gson().toJson(report));
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject,
+                    response -> Log.d("TAG", response.toString())
+                    , Throwable::printStackTrace);
+            queue.add(jsonRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        database.addReport(report);
+    }
+
+    public static void updateReport(Report report) {
+        try {
+            JSONObject jsonObject = new JSONObject(new Gson().toJson(report));
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.PUT, URL, jsonObject,
+                    response -> Log.d("TAG", response.toString())
+                    , Throwable::printStackTrace);
+            queue.add(jsonRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        database.updateReport(report);
     }
 
     private static void refreshContent() {

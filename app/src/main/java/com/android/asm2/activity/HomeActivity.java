@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.asm2.R;
+import com.android.asm2.controller.UserController;
 import com.android.asm2.dialog.ZoneDialog;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.database.ZoneDatabase;
@@ -215,8 +216,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void editUser() {
-        UserDatabase userDatabase = UserDatabase.getInstance();
-        userDatabase.updateUser(user);
+        //TODO change to controller
+        UserController.updateUser(user);
         resetUserInfoFrag();
     }
 

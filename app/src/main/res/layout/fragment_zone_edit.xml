@@ -313,7 +313,7 @@
         android:id="@+id/zone_edit_frag_restore_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Restore Changes"
+        android:text="Restore Data"
         android:textColor="@color/white"
         app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"

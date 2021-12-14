@@ -3,6 +3,7 @@ package com.android.asm2.fragment;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,7 +19,9 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.android.asm2.R;
+import com.android.asm2.activity.LocationPickerActivity;
 import com.android.asm2.activity.ZoneInfoActivity;
+import com.android.asm2.controller.ZoneController;
 import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.model.Zone;
@@ -38,9 +41,9 @@ public class ZoneEditFrag extends Fragment {
     public ZoneEditFrag(Zone zone, boolean isAdded) {
         this.zone = zone;
         this.isAdded = isAdded;
-        closedDateStr = new String[1];
-        startDateStr = new String[1];
-        startTimeStr = new String[1];
+        closedDateStr = new String[]{zone.getClosedDate()};
+        startDateStr = new String[]{zone.getStartDate()};
+        startTimeStr = new String[]{zone.getStartTime()};
     }
 
     @Override
@@ -103,6 +106,11 @@ public class ZoneEditFrag extends Fragment {
         backBtn.setOnClickListener(v -> ((ZoneInfoActivity) requireActivity()).changeToInfoFrag(zone));
         restoreBtn.setOnClickListener(v -> setInput());
         saveBtn.setOnClickListener((v -> saveZone()));
+        locationBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), LocationPickerActivity.class);
+            intent.putExtra("id", zone.getId());
+            requireActivity().startActivityForResult(intent, 100);
+        });
 
         return view;
     }
@@ -158,7 +166,6 @@ public class ZoneEditFrag extends Fragment {
         }
     }
 
-    //TODO change lat and long when you add map
     private void saveZone() {
         if (isEmptyInput()) return;
         String nameStr = nameInput.getText().toString().trim();
@@ -170,9 +177,9 @@ public class ZoneEditFrag extends Fragment {
                 durationFloat, quantityInt, zone.getLeader(), zone.getCreatedDate(),
                 closedDateStr[0], startDateStr[0], startTimeStr[0],
                 descriptionInput.getText().toString());
-        ZoneDatabase zoneDatabase = ZoneDatabase.getInstance();
-        if (isAdded) zoneDatabase.addZone(saveZone);
-        else zoneDatabase.updateZone(saveZone);
+        //TODO change to controller
+        if (isAdded) ZoneController.addZone(saveZone);
+        else ZoneController.updateZone(saveZone);
         requireActivity().finish();
     }
 }

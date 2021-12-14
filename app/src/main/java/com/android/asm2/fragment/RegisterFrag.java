@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.asm2.activity.HomeActivity;
 import com.android.asm2.R;
+import com.android.asm2.controller.UserController;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 
@@ -78,7 +79,8 @@ public class RegisterFrag extends Fragment {
             User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr,
                     isVolunteer ? "volunteer" : "leader", new ArrayList<>());
 //            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, "admin");
-            userDatabase.addUser(user);
+            //TODO change to controller
+            UserController.addUser(user);
             Intent intent = new Intent(requireContext(), HomeActivity.class);
             UserDatabase.setCurrentUser(user);
             requireActivity().startActivity(intent);
