@@ -1,6 +1,8 @@
 package com.android.asm2.controller;
 
 import android.content.Context;
+import android.os.CountDownTimer;
+import android.util.Log;
 
 import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.model.Report;
@@ -9,12 +11,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ReportController {
     private static final String URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2/reports";
+    private static final long REFRESH_REQUEST = 60 * 1000;
     private static RequestQueue queue = null;
     private static ReportDatabase database = null;
 
@@ -26,16 +30,26 @@ public class ReportController {
     public static void getAllReports() {
         JsonArrayRequest userArrayRequest = new JsonArrayRequest(Request.Method.GET, URL, null,
                 response -> {
-                    database.clearData();
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject object = response.getJSONObject(i);
-                            database.addReport(new Gson().fromJson(object.toString(), Report.class));
+                            database.handleData(new Gson().fromJson(object.toString(), Report.class));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+                    refreshContent();
                 }, Throwable::printStackTrace);
         queue.add(userArrayRequest);
+    }
+
+    private static void refreshContent() {
+        new CountDownTimer(REFRESH_REQUEST, 1000) {
+            public void onTick(long millisUntilFinished) {
+            }
+            public void onFinish() {
+                getAllReports();
+            }
+        }.start();
     }
 }

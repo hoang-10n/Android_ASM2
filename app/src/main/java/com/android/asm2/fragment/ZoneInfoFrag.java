@@ -9,10 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.android.asm2.ActionDialog;
-import com.android.asm2.FriendDialog;
+import com.android.asm2.dialog.ActionDialog;
+import com.android.asm2.dialog.FriendDialog;
 import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.database.UserDatabase;
@@ -51,6 +52,7 @@ public class ZoneInfoFrag extends Fragment {
         TextView leaderTxt = view.findViewById(R.id.zone_info_frag_leader_txt);
         TextView descriptionTxt = view.findViewById(R.id.zone_info_frag_description_txt);
         Button friendBtn = view.findViewById(R.id.zone_info_frag_friend_btn);
+        ImageButton mapBtn = view.findViewById(R.id.zone_info_frag_map_btn);
 
         nameTxt.setText(zone.getName());
         durationTxt.setText("Duration: " + zone.getDuration() + "hrs");
@@ -61,11 +63,6 @@ public class ZoneInfoFrag extends Fragment {
         leaderTxt.setText("created by " + zone.getLeader());
         descriptionTxt.setText(" - " + zone.getDescription());
 
-        friendBtn.setOnClickListener(v -> {
-            FriendDialog friendDialog = new FriendDialog(getContext(),
-                    android.R.style.Theme_Dialog, zone);
-            friendDialog.show();
-        });
         if (user.getUsername().equals(zone.getLeader()) || user.getRole().equals("admin")) {
             multipleBtn.setText("Show actions");
             multipleBtn.setOnClickListener(v -> {
@@ -79,6 +76,15 @@ public class ZoneInfoFrag extends Fragment {
             setToJoinBtn();
         }
 
+        friendBtn.setOnClickListener(v -> {
+            FriendDialog friendDialog = new FriendDialog(getContext(),
+                    android.R.style.Theme_Dialog, zone);
+            friendDialog.show();
+        });
+
+        mapBtn.setOnClickListener(v -> {
+            ((ZoneInfoActivity) requireActivity()).changeToMapFrag(zone);
+        });
         return view;
     }
 

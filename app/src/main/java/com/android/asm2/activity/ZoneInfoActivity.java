@@ -13,11 +13,11 @@ import com.android.asm2.database.UserDatabase;
 import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.fragment.ZoneEditFrag;
 import com.android.asm2.fragment.ZoneInfoFrag;
+import com.android.asm2.fragment.ZoneMapFrag;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
 public class ZoneInfoActivity extends AppCompatActivity {
-    private Fragment startingFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,15 @@ public class ZoneInfoActivity extends AppCompatActivity {
         ImageButton close = findViewById(R.id.blank_close_btn);
 
         Intent intent = getIntent();
-        boolean isAdded = (boolean) intent.getExtras().get("isAdded");
+        int startPage = (int) intent.getExtras().get("startPage");
         String zoneId = (String) intent.getExtras().get("id");
-        if (!isAdded) {
+        Fragment startingFrag;
+
+        if (startPage == 0) {
+            ZoneDatabase database = ZoneDatabase.getInstance();
+            Zone zone = database.getZoneById(zoneId);
+            startingFrag = new ZoneMapFrag(zone);
+        } else if (startPage == 1) {
             ZoneDatabase database = ZoneDatabase.getInstance();
             Zone zone = database.getZoneById(zoneId);
             startingFrag = new ZoneInfoFrag(zone);
@@ -53,10 +59,19 @@ public class ZoneInfoActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    public void changeToInfoFrag() {
+    public void changeToInfoFrag(Zone zone) {
+        ZoneInfoFrag zoneInfoFrag = new ZoneInfoFrag(zone);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-        ft.replace(R.id.blank_frag_container, startingFrag);
+        ft.replace(R.id.blank_frag_container, zoneInfoFrag);
+        ft.commit();
+    }
+
+    public void changeToMapFrag(Zone zone) {
+        ZoneMapFrag zoneMapFrag = new ZoneMapFrag(zone);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        ft.replace(R.id.blank_frag_container, zoneMapFrag);
         ft.commit();
     }
 }

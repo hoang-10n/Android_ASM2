@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.asm2.R;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;

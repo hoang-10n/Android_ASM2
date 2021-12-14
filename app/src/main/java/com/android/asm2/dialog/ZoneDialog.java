@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.RequiresApi;
 
+import com.android.asm2.R;
 import com.android.asm2.activity.HomeActivity;
 
 public class ZoneDialog extends Dialog {

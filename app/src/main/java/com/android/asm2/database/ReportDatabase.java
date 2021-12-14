@@ -2,18 +2,24 @@ package com.android.asm2.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.android.asm2.BroadcastReceiverHelper;
 import com.android.asm2.model.Report;
 import com.android.asm2.model.Zone;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class ReportDatabase extends SQLiteOpenHelper {
+    private Context context;
     private static ReportDatabase reportDatabase;
 
     private static final int DATABASE_VERSION = 1;
@@ -21,6 +27,7 @@ public class ReportDatabase extends SQLiteOpenHelper {
 
     private ReportDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     public static ReportDatabase getInstance() {
@@ -28,6 +35,11 @@ public class ReportDatabase extends SQLiteOpenHelper {
     }
 
     public static ReportDatabase initAndGetInstance(Context context) {
+        BroadcastReceiverHelper helper = BroadcastReceiverHelper.getInstance();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("Report updated");
+        filter.addAction("Report added");
+        context.registerReceiver(helper, filter);
         reportDatabase = new ReportDatabase(context);
         return reportDatabase;
     }
@@ -69,6 +81,9 @@ public class ReportDatabase extends SQLiteOpenHelper {
     }
 
     public void updateReport(Report report) {
+        Intent intent = new Intent("Report updated");
+        context.sendBroadcast(intent);
+
         SQLiteDatabase db = getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("tested", report.getTested());
@@ -83,6 +98,9 @@ public class ReportDatabase extends SQLiteOpenHelper {
     }
 
     public void addReport(Report report) {
+        Intent intent = new Intent("Report added");
+        context.sendBroadcast(intent);
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("zone_id", report.getZoneId());
@@ -128,5 +146,15 @@ public class ReportDatabase extends SQLiteOpenHelper {
         }
         cursor.close();
         return reportArrayList;
+    }
+
+    public void handleData(Report newReport) {
+        Report existingReport = getReportByZoneId(newReport.getZoneId());
+        if (existingReport == null) addReport(newReport);
+        else {
+            Gson gson = new Gson();
+            if (!gson.toJson(newReport).equals(gson.toJson(existingReport)))
+                updateReport(newReport);
+        }
     }
 }

@@ -96,7 +96,7 @@ public class ZoneAdapter extends BaseAdapter {
         mapBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ZoneInfoActivity.class);
             intent.putExtra("id", zone.getId());
-            intent.putExtra("isAdded", false);
+            intent.putExtra("startPage", 0);
             ((AppCompatActivity) context).startActivityForResult(intent, 100);
         });
 

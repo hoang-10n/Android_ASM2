@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.asm2.R;
-import com.android.asm2.UserDialog;
+import com.android.asm2.dialog.UserDialog;
 import com.android.asm2.activity.HomeActivity;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;

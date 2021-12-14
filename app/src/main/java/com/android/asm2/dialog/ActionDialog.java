@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.android.asm2.R;
 import com.android.asm2.activity.ReportActivity;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.database.ReportDatabase;

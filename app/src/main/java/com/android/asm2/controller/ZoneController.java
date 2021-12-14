@@ -1,6 +1,7 @@
 package com.android.asm2.controller;
 
 import android.content.Context;
+import android.os.CountDownTimer;
 
 import com.android.asm2.database.ZoneDatabase;
 import com.android.asm2.model.Zone;
@@ -17,6 +18,7 @@ public class ZoneController {
     private static final String URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2/zones";
     private static RequestQueue queue = null;
     private static ZoneDatabase database = null;
+    private static final long REFRESH_REQUEST = 60 * 1000;
 
     public static void init(Context context) {
         queue = Volley.newRequestQueue(context);
@@ -26,16 +28,26 @@ public class ZoneController {
     public static void getAllZones() {
         JsonArrayRequest userArrayRequest = new JsonArrayRequest(Request.Method.GET, URL, null,
                 response -> {
-                    database.clearData();
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject object = response.getJSONObject(i);
-                            database.addZone(new Gson().fromJson(object.toString(), Zone.class));
+                            database.handleData(new Gson().fromJson(object.toString(), Zone.class));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+                    refreshContent();
                 }, Throwable::printStackTrace);
         queue.add(userArrayRequest);
+    }
+
+    private static void refreshContent() {
+        new CountDownTimer(REFRESH_REQUEST, 1000) {
+            public void onTick(long millisUntilFinished) {
+            }
+            public void onFinish() {
+                getAllZones();
+            }
+        }.start();
     }
 }

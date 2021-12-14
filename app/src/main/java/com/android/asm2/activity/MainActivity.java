@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.android.asm2.NotificationHelper;
 import com.android.asm2.R;
 import com.android.asm2.controller.ReportController;
 import com.android.asm2.controller.UserController;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        NotificationHelper.init(MainActivity.class, this);
         UserController.init(this);
         UserController.getAllUsers();
         ZoneController.init(this);

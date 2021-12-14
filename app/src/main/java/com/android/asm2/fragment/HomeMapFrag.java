@@ -1,22 +1,21 @@
 package com.android.asm2.fragment;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.android.asm2.R;
 import com.android.asm2.activity.ZoneInfoActivity;
@@ -35,19 +34,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ZoneMapFrag extends Fragment {
+public class HomeMapFrag extends Fragment {
     private static final int MY_PERMISSION_REQUEST_LOCATION = 99;
     private static final long UPDATE_INTERVAL = 10 * 1000; //10 sec
     private static final long FASTEST_INTERVAL = 2 * 1000; //2 sec
     private GoogleMap mMap;
     private final ArrayList<Zone> zoneArrayList;
-    private final Zone chosenZone;
     private final ZoneDatabase zoneDatabase;
     private Marker oldMarker;
     protected FusedLocationProviderClient client;
@@ -58,10 +54,9 @@ public class ZoneMapFrag extends Fragment {
         }
     };
 
-    public ZoneMapFrag(Zone chosenZone) {
+    public HomeMapFrag() {
         zoneDatabase = ZoneDatabase.getInstance();
         zoneArrayList = zoneDatabase.getAllZones();
-        this.chosenZone = chosenZone;
     }
 
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -85,25 +80,29 @@ public class ZoneMapFrag extends Fragment {
             for (Zone zone : zoneArrayList) {
                 LatLng pos = new LatLng(zone.getLatitude(), zone.getLongitude());
                 String title = zone.getId() + ": " + zone.getName();
-                if (zone.getId().equals(chosenZone.getId())) {
-                    mMap.addMarker(new MarkerOptions().position(pos).title(title)
-                            .icon(BitmapDescriptorFactory.fromBitmap(getBitmap(R.drawable.ic_logo))));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 15));
-                } else {
-                    mMap.addMarker(new MarkerOptions().position(pos).title(title)
-                            .icon(BitmapDescriptorFactory.fromBitmap(getBitmap(R.drawable.ic_logo_simple))));
-                }
+                mMap.addMarker(new MarkerOptions().position(pos).title(title)
+                        .icon(BitmapDescriptorFactory.fromBitmap(getBitmap(R.drawable.ic_logo_simple))));
             }
 
             mMap.setOnMarkerClickListener(marker -> {
                 if (Objects.equals(marker.getTitle(), "My location")) return false;
-                stopLocationUpdate();
                 Zone clickedZone = zoneDatabase.
                         getZoneById(Objects.requireNonNull(marker.getTitle()).split(": ")[0]);
-                ((ZoneInfoActivity) requireActivity()).changeToInfoFrag(clickedZone);
+                stopLocationUpdate();
+                Intent intent = new Intent(requireContext(), ZoneInfoActivity.class);
+                intent.putExtra("id", clickedZone.getId());
+                intent.putExtra("startPage", 1);
+                requireActivity().startActivity(intent);
                 return false;
             });
 
+            client.getLastLocation().addOnSuccessListener(requireActivity(),
+                    location -> {
+                        LatLng currentPos = new LatLng(location.getLatitude(), location.getLongitude());
+                        oldMarker = mMap.addMarker(new MarkerOptions().position(currentPos).title("My location")
+                                .icon(BitmapDescriptorFactory.fromBitmap(getBitmap(R.drawable.ic_current_pos))));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos, 15));
+                    });
             startLocationUpdate();
         }
     };
@@ -142,6 +141,7 @@ public class ZoneMapFrag extends Fragment {
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSION_REQUEST_LOCATION);
     }
+
 
     private void stopLocationUpdate() {
         client.removeLocationUpdates(locationCallback);

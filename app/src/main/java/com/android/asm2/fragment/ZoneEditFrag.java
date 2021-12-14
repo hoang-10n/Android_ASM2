@@ -67,6 +67,7 @@ public class ZoneEditFrag extends Fragment {
         ImageButton backBtn = view.findViewById(R.id.zone_edit_frag_back_btn);
         Button saveBtn = view.findViewById(R.id.zone_edit_frag_save_btn);
         Button restoreBtn = view.findViewById(R.id.zone_edit_frag_restore_btn);
+        Button locationBtn = view.findViewById(R.id.edit_frag_location_select_btn);
         errorTxt = view.findViewById(R.id.zone_edit_frag_error_txt);
 
         if (isAdded) backBtn.setVisibility(View.GONE);
@@ -99,7 +100,7 @@ public class ZoneEditFrag extends Fragment {
             dialog.show();
         });
 
-        backBtn.setOnClickListener(v -> ((ZoneInfoActivity) requireActivity()).changeToInfoFrag());
+        backBtn.setOnClickListener(v -> ((ZoneInfoActivity) requireActivity()).changeToInfoFrag(zone));
         restoreBtn.setOnClickListener(v -> setInput());
         saveBtn.setOnClickListener((v -> saveZone()));
 
@@ -157,7 +158,7 @@ public class ZoneEditFrag extends Fragment {
         }
     }
 
-    // TODO change lat and long when you add map
+    //TODO change lat and long when you add map
     private void saveZone() {
         if (isEmptyInput()) return;
         String nameStr = nameInput.getText().toString().trim();

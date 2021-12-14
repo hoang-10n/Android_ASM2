@@ -3,22 +3,30 @@ package com.android.asm2.database;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.android.asm2.BroadcastReceiverHelper;
+import com.android.asm2.model.Report;
 import com.android.asm2.model.Zone;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class ZoneDatabase extends SQLiteOpenHelper {
     private static ZoneDatabase zoneDatabase;
+    private final Context context;
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "zone.db";
 
     private ZoneDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     public static ZoneDatabase getInstance() {
@@ -26,6 +34,11 @@ public class ZoneDatabase extends SQLiteOpenHelper {
     }
 
     public static ZoneDatabase initAndGetInstance(Context context) {
+        BroadcastReceiverHelper helper = BroadcastReceiverHelper.getInstance();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("Zone updated");
+        filter.addAction("Zone added");
+        context.registerReceiver(helper, filter);
         zoneDatabase = new ZoneDatabase(context);
         return zoneDatabase;
     }
@@ -68,6 +81,9 @@ public class ZoneDatabase extends SQLiteOpenHelper {
     }
 
     public void updateZone(Zone zone) {
+        Intent intent = new Intent("Zone updated");
+        context.sendBroadcast(intent);
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", zone.getName());
@@ -85,6 +101,9 @@ public class ZoneDatabase extends SQLiteOpenHelper {
     }
 
     public void addZone(Zone zone) {
+        Intent intent = new Intent("Zone added");
+        context.sendBroadcast(intent);
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("id", zone.getId());
@@ -134,5 +153,20 @@ public class ZoneDatabase extends SQLiteOpenHelper {
         }
         cursor.close();
         return zoneArrayList;
+    }
+
+    public void handleData(Zone newZone) {
+        Zone existingZone = getZoneById(newZone.getId());
+        if (existingZone == null) addZone(newZone);
+        else {
+            Gson gson = new Gson();
+            //TODO why is this?
+            if (Math.abs(newZone.getLatitude() - existingZone.getLatitude()) < 0.01)
+                existingZone.setLatitude(newZone.getLatitude());
+            if (Math.abs(newZone.getLongitude() - existingZone.getLongitude()) < 0.01)
+                existingZone.setLongitude(newZone.getLongitude());
+            if (!gson.toJson(newZone).equals(gson.toJson(existingZone)))
+                updateZone(newZone);
+        }
     }
 }

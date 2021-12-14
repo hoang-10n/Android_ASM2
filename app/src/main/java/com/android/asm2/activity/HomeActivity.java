@@ -12,9 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.asm2.R;
-import com.android.asm2.ZoneDialog;
+import com.android.asm2.dialog.ZoneDialog;
 import com.android.asm2.database.UserDatabase;
 import com.android.asm2.database.ZoneDatabase;
+import com.android.asm2.fragment.HomeMapFrag;
 import com.android.asm2.fragment.UserInfoFrag;
 import com.android.asm2.fragment.ZoneListFrag;
 import com.android.asm2.model.User;
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         Button popupBtn = findViewById(R.id.home_zone_list_popup_btn);
         Button accountBtn = findViewById(R.id.home_account_btn);
         Button zoneBtn = findViewById(R.id.home_zone_btn);
+        Button mapBtn = findViewById(R.id.home_map_btn);
         ImageButton addBtn = findViewById(R.id.home_zone_list_add_btn);
 
         user = UserDatabase.getCurrentUser();
@@ -66,23 +68,35 @@ public class HomeActivity extends AppCompatActivity {
             String lastZoneId = zoneArrayList.get(zoneArrayList.size() - 1).getId();
             String newId = "Z" + (Integer.parseInt(lastZoneId.substring(1)) + 1);
             intent1.putExtra("id", newId);
-            intent1.putExtra("isAdded", true);
+            intent1.putExtra("startPage", 2);
             startActivityForResult(intent1, 100);
         });
 
         accountBtn.setOnClickListener(v -> {
             zoneBtn.setEnabled(true);
             accountBtn.setEnabled(false);
+            mapBtn.setEnabled(true);
             addBtn.setVisibility(View.GONE);
             popupBtn.setVisibility(View.GONE);
             resetUserInfoFrag();
         });
+
         zoneBtn.setOnClickListener(v -> {
-            accountBtn.setEnabled(true);
             zoneBtn.setEnabled(false);
+            accountBtn.setEnabled(true);
+            mapBtn.setEnabled(true);
             addBtn.setVisibility(View.VISIBLE);
             popupBtn.setVisibility(View.VISIBLE);
             resetZoneListFrag();
+        });
+
+        mapBtn.setOnClickListener(v -> {
+            zoneBtn.setEnabled(true);
+            accountBtn.setEnabled(true);
+            mapBtn.setEnabled(false);
+            addBtn.setVisibility(View.GONE);
+            popupBtn.setVisibility(View.GONE);
+            resetMapFrag();
         });
     }
 
@@ -189,6 +203,14 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
         ft1.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         ft1.replace(R.id.home_frag_container, userInfoFrag);
+        ft1.commit();
+    }
+
+    private void resetMapFrag() {
+        HomeMapFrag zoneMapFrag = new HomeMapFrag();
+        FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
+        ft1.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        ft1.replace(R.id.home_frag_container, zoneMapFrag);
         ft1.commit();
     }
 
