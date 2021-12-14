@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.asm2.R;
+import com.android.asm2.activity.MainActivity;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
@@ -28,10 +29,12 @@ import java.util.Locale;
 public class ZoneAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<Zone> zoneArrayList;
+    private final boolean isStarting;
 
-    public ZoneAdapter(Context context, ArrayList<Zone> zoneArrayList) {
+    public ZoneAdapter(Context context, ArrayList<Zone> zoneArrayList, boolean isStarting) {
         this.context = context;
         this.zoneArrayList = zoneArrayList;
+        this.isStarting = isStarting;
     }
 
     @Override
@@ -94,10 +97,15 @@ public class ZoneAdapter extends BaseAdapter {
         if (isStarted) startTxt.setTextColor(Color.parseColor("#FF0000"));
 
         mapBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ZoneInfoActivity.class);
-            intent.putExtra("id", zone.getId());
-            intent.putExtra("startPage", 0);
-            ((AppCompatActivity) context).startActivityForResult(intent, 100);
+            if (!isStarting) {
+                Intent intent = new Intent(context, ZoneInfoActivity.class);
+                intent.putExtra("id", zone.getId());
+                intent.putExtra("startPage", 0);
+                ((AppCompatActivity) context).startActivityForResult(intent, 100);
+            } else {
+                Intent intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
+            }
         });
 
         return view;

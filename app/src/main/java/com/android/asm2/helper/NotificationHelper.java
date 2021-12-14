@@ -1,4 +1,4 @@
-package com.android.asm2;
+package com.android.asm2.helper;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -13,6 +13,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
+import com.android.asm2.R;
 
 /**
  * This class sends out notification to phone

@@ -7,13 +7,9 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import androidx.annotation.Nullable;
-
-import com.android.asm2.BroadcastReceiverHelper;
+import com.android.asm2.helper.BroadcastReceiverHelper;
 import com.android.asm2.model.Report;
-import com.android.asm2.model.Zone;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

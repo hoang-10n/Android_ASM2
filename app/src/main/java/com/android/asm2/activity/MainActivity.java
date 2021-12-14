@@ -6,11 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.android.asm2.NotificationHelper;
 import com.android.asm2.R;
-import com.android.asm2.controller.ReportController;
-import com.android.asm2.controller.UserController;
-import com.android.asm2.controller.ZoneController;
 import com.android.asm2.fragment.LoginFrag;
 import com.android.asm2.fragment.RegisterFrag;
 
@@ -21,14 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        NotificationHelper.init(MainActivity.class, this);
-        UserController.init(this);
-        UserController.getAllUsers();
-        ZoneController.init(this);
-        ZoneController.getAllZones();
-        ReportController.init(this);
-        ReportController.getAllReports();
 
         LoginFrag loginFrag = new LoginFrag();
         RegisterFrag registerFrag = new RegisterFrag();
