@@ -93,7 +93,6 @@ public class ZoneInfoFrag extends Fragment {
         multipleBtn.setText("Enter this zone");
         multipleBtn.setOnClickListener(v -> {
             user.joinZone(zone.getId());
-            //TODO change to controller
             UserController.updateUser(user);
             setToLeaveBtn();
         });

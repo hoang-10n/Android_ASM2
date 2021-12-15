@@ -13,6 +13,9 @@ import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 import com.google.gson.Gson;
 
+/***
+ * User Dialog is used in User Info Fragment to change user's information
+ */
 public class UserDialog extends Dialog {
     private final EditText passwordInput, emailInput, phoneInput, nameInput;
     private final RadioButton volunteer, leader;

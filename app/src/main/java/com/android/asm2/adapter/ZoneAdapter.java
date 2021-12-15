@@ -26,6 +26,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/***
+ * Zone Adapter to generate blocks in Zone List Fragment and Starting Activity
+ */
 public class ZoneAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<Zone> zoneArrayList;

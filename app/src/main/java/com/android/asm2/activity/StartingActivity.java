@@ -16,6 +16,9 @@ import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
 
+/***
+ * Starting Activity with list of zones
+ */
 public class StartingActivity extends AppCompatActivity {
 
     @Override

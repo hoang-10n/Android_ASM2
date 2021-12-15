@@ -17,6 +17,9 @@ import androidx.annotation.RequiresApi;
 import com.android.asm2.R;
 import com.android.asm2.activity.HomeActivity;
 
+/***
+ * Zone Dialog is used in Zone List Fragment to provide search input, sort and filter fields
+ */
 public class ZoneDialog extends Dialog {
     private final int[] sortParam = {0};
     private final boolean[] isAscending = {true};

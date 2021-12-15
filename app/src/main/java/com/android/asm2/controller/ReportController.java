@@ -18,11 +18,14 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/***
+ * Report Controller to execute GET, POST and PUT requests to server and store reports in Report Database
+ */
 public class ReportController {
     private static final String MOCK_URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2";
     private static final String NG_URL = "https://s3749795-hoang-android-asm2.herokuapp.com/api";
     private static final String URL = NG_URL + "/reports";
-    private static final long REFRESH_REQUEST = 60 * 1000;
+    private static final long REFRESH_REQUEST = 60 * 1000; // Refresh content interval = 60 secs
     private static RequestQueue queue = null;
     private static ReportDatabase database = null;
 

@@ -16,6 +16,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/***
+ * User Database to handle data modification to user.db
+ */
 public class UserDatabase extends SQLiteOpenHelper {
     private Context context;
     private static UserDatabase userDatabase;

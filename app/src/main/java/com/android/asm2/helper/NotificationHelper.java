@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
 import com.android.asm2.R;
 
 /**
- * This class sends out notification to phone
+ *  Notification Helper is used to send out notification
  */
 public class NotificationHelper {
     @SuppressLint("StaticFieldLeak")

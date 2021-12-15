@@ -78,8 +78,6 @@ public class RegisterFrag extends Fragment {
             errorTxt.setText("");
             User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr,
                     isVolunteer ? "volunteer" : "leader", new ArrayList<>());
-//            User user = new User(usernameStr, passwordStr, emailStr, phoneStr, nameStr, "admin");
-            //TODO change to controller
             UserController.addUser(user);
             Intent intent = new Intent(requireContext(), HomeActivity.class);
             UserDatabase.setCurrentUser(user);

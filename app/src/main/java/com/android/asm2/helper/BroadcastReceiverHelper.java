@@ -7,6 +7,9 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+/***
+ * Broadcast Receiver Helper is used to manage broadcasts and event actions
+ */
 public class BroadcastReceiverHelper extends BroadcastReceiver {
     private NotificationHelper notificationHelper;
     private static BroadcastReceiverHelper broadcastReceiverHelper;

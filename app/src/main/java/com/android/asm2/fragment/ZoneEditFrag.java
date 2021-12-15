@@ -177,7 +177,6 @@ public class ZoneEditFrag extends Fragment {
                 durationFloat, quantityInt, zone.getLeader(), zone.getCreatedDate(),
                 closedDateStr[0], startDateStr[0], startTimeStr[0],
                 descriptionInput.getText().toString());
-        //TODO change to controller
         if (isAdded) ZoneController.addZone(saveZone);
         else ZoneController.updateZone(saveZone);
         requireActivity().finish();

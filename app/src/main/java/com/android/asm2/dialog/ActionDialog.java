@@ -23,6 +23,9 @@ import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
 
+/***
+ * Action Dialog is used in Zone Info Fragment to give leaders and admin more actions
+ */
 public class ActionDialog extends Dialog {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ActionDialog(Context context, int themeResId, ZoneInfoActivity activity, Zone zone) {
@@ -78,6 +81,7 @@ public class ActionDialog extends Dialog {
                     FileHelper.save(user.getName() + "; username: " + user.getUsername() + "; email: " + user.getEmail());
                 }
             }
+            dismiss();
         });
     }
 }

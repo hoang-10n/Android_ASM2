@@ -14,6 +14,9 @@ import com.android.asm2.database.UserDatabase;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
+/***
+ * Friend Dialog is used in Zone Info Fragment to register for a friend
+ */
 public class FriendDialog extends Dialog {
     public FriendDialog(Context context, int themeResId, Zone zone) {
         super(context, themeResId);
@@ -41,7 +44,6 @@ public class FriendDialog extends Dialog {
                     return;
                 } else {
                     user.joinZone(zone.getId());
-                    //TODO change to controller
                     UserController.updateUser(user);
                 }
             }

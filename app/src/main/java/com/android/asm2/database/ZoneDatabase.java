@@ -15,6 +15,9 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+/***
+ * Zone Database to handle data modification to zone.db
+ */
 public class ZoneDatabase extends SQLiteOpenHelper {
     private static ZoneDatabase zoneDatabase;
     private final Context context;
@@ -158,7 +161,6 @@ public class ZoneDatabase extends SQLiteOpenHelper {
         if (existingZone == null) addZone(newZone);
         else {
             Gson gson = new Gson();
-            //TODO why is this?
             if (Math.abs(newZone.getLatitude() - existingZone.getLatitude()) < 0.01)
                 existingZone.setLatitude(newZone.getLatitude());
             if (Math.abs(newZone.getLongitude() - existingZone.getLongitude()) < 0.01)

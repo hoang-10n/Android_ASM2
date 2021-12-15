@@ -13,6 +13,9 @@ import com.android.asm2.model.User;
 
 import java.util.ArrayList;
 
+/***
+ * User Adapter to generate block in User List Fragment
+ */
 public class UserAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<User> userArrayList;

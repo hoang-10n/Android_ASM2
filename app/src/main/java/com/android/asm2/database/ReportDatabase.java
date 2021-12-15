@@ -14,6 +14,9 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+/***
+ * Report Database to handle data modification to report.db
+ */
 public class ReportDatabase extends SQLiteOpenHelper {
     private Context context;
     private static ReportDatabase reportDatabase;

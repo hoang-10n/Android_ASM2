@@ -21,6 +21,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+/***
+ * Report Adapter to generate blocks in Report List Fragment
+ */
 public class ReportAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<Report> reportArrayList;

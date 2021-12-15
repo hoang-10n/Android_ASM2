@@ -29,6 +29,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
+/***
+ * Home Activity for Volunteer and Leader with Zone List, User Info and Map Fragments
+ */
 public class HomeActivity extends AppCompatActivity {
     private boolean isAscending = true;
     private String zoneName = "";
@@ -216,7 +219,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void editUser() {
-        //TODO change to controller
         UserController.updateUser(user);
         resetUserInfoFrag();
     }

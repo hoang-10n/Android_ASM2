@@ -17,6 +17,9 @@ import com.android.asm2.fragment.ZoneMapFrag;
 import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
+/***
+ * Zone Info Activity with Zone Info, Zone Edit and Zone Map Fragments
+ */
 public class ZoneInfoActivity extends AppCompatActivity {
     private ZoneDatabase zoneDatabase;
 

@@ -14,6 +14,9 @@ import com.android.asm2.fragment.ReportEditFrag;
 import com.android.asm2.fragment.ReportInfoFrag;
 import com.android.asm2.model.Report;
 
+/***
+ * Report Activity with Report Info and Report Edit Fragments
+ */
 public class ReportActivity extends AppCompatActivity {
     private Fragment startFrag;
 

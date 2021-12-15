@@ -10,6 +10,9 @@ import com.android.asm2.R;
 import com.android.asm2.fragment.LoginFrag;
 import com.android.asm2.fragment.RegisterFrag;
 
+/***
+ * Main Activity with Login and Register Fragments
+ */
 public class MainActivity extends AppCompatActivity {
     private boolean isLogin = true;
 

@@ -3,6 +3,9 @@ package com.android.asm2.helper;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/***
+ * File Helper is used to generate volunteer list in Action Dialog
+ */
 public class FileHelper {
     private static final String FILE_NAME = "volunteer_list.txt";
 

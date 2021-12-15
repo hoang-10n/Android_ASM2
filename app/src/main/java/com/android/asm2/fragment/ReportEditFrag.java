@@ -60,7 +60,6 @@ public class ReportEditFrag extends Fragment {
             report.setPositive1st(getIntegerInput(positive1stInput));
             report.setNote(noteInput.getText().toString());
 
-            //TODO change to controller
             if (isAdded) ReportController.addReport(report);
             else ReportController.updateReport(report);
 

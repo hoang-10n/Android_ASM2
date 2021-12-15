@@ -34,6 +34,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+/***
+ * Location Picker Activity when choosing new position in the Zone Edit Fragment
+ */
 public class LocationPickerActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private ActivityLocationPickerBinding binding;

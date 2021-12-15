@@ -23,6 +23,9 @@ import com.android.asm2.model.Zone;
 
 import java.util.ArrayList;
 
+/***
+ * Home Activity for Admin wiht Zone List, Report List and User List Fragment
+ */
 public class AdminActivity extends AppCompatActivity {
     private ArrayList<Zone> zoneArrayList;
     private ArrayList<User> userArrayList;
