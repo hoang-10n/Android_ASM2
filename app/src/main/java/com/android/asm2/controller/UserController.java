@@ -17,7 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class UserController {
-    private static final String URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2/users";
+    private static final String MOCK_URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2";
+    private static final String NG_URL = "https://s3749795-hoang-android-asm2.herokuapp.com/api";
+    private static final String URL = NG_URL + "/users";
     private static final long REFRESH_REQUEST = 60 * 1000;
     private static RequestQueue queue = null;
     private static UserDatabase database = null;
@@ -72,6 +74,7 @@ public class UserController {
         new CountDownTimer(REFRESH_REQUEST, 1000) {
             public void onTick(long millisUntilFinished) {
             }
+
             public void onFinish() {
                 getAllUsers();
             }

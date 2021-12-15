@@ -17,7 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ZoneController {
-    private static final String URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2/zones";
+    private static final String MOCK_URL = "https://my-json-server.typicode.com/hoang-10n/Android_ASM2";
+    private static final String NG_URL = "https://s3749795-hoang-android-asm2.herokuapp.com/api";
+    private static final String URL = NG_URL + "/zones";
     private static RequestQueue queue = null;
     private static ZoneDatabase database = null;
     private static final long REFRESH_REQUEST = 60 * 1000;
@@ -73,6 +75,7 @@ public class ZoneController {
         new CountDownTimer(REFRESH_REQUEST, 1000) {
             public void onTick(long millisUntilFinished) {
             }
+
             public void onFinish() {
                 getAllZones();
             }

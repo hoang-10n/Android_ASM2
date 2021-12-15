@@ -123,6 +123,7 @@ public class LocationPickerActivity extends FragmentActivity implements OnMapRea
                     .title("New pos for " + chosenZone.getId())
                     .icon(BitmapDescriptorFactory.defaultMarker()));
         });
+        startLocationUpdate();
     }
 
     private void onLocationChanged(Location lastLocation) {

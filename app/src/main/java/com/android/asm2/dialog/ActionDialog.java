@@ -3,19 +3,28 @@ package com.android.asm2.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.annotation.RequiresApi;
 
 import com.android.asm2.R;
 import com.android.asm2.activity.ReportActivity;
 import com.android.asm2.activity.ZoneInfoActivity;
 import com.android.asm2.database.ReportDatabase;
 import com.android.asm2.database.UserDatabase;
+import com.android.asm2.helper.FileHelper;
+import com.android.asm2.helper.NotificationHelper;
 import com.android.asm2.model.Report;
+import com.android.asm2.model.User;
 import com.android.asm2.model.Zone;
 
+import java.util.ArrayList;
+
 public class ActionDialog extends Dialog {
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public ActionDialog(Context context, int themeResId, ZoneInfoActivity activity, Zone zone) {
         super(context, themeResId);
         setContentView(R.layout.popup_more_actions);
@@ -57,6 +66,18 @@ public class ActionDialog extends Dialog {
             intent.putExtra("zoneId", zone.getId());
             intent.putExtra("zoneName", zone.getName());
             activity.startActivity(intent);
+        });
+        volunteerListBtn.setOnClickListener(v -> {
+            NotificationHelper helper = NotificationHelper.getInstance();
+            helper.createNotification("Volunteer list", "Volunteer list for " + zone.getId()
+                    + ": " + zone.getName() + " have been stored");
+            UserDatabase userDatabase = UserDatabase.getInstance();
+            ArrayList<User> userArrayList = userDatabase.getAllUsers();
+            for (User user :userArrayList) {
+                if (user.isJoinedZone(zone.getId())) {
+                    FileHelper.save(user.getName() + "; username: " + user.getUsername() + "; email: " + user.getEmail());
+                }
+            }
         });
     }
 }
