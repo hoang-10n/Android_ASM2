@@ -102,7 +102,6 @@ public class ZoneInfoFrag extends Fragment {
         multipleBtn.setText("Leave this zone");
         multipleBtn.setOnClickListener(v -> {
             user.leaveZone(zone.getId());
-            //TODO change to controller
             UserController.updateUser(user);
             setToJoinBtn();
         });
