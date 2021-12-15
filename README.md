@@ -88,3 +88,13 @@ Beside using Java for coding and Gradle for the main application, there are some
 
 There are total of 6 activities and 12 fragments that the users can navaigate through. There are also other components included in the interfaces such as dialogs for creating dialogs and popups, adapters for creating list of objects.
 There are some other classes that work in the backend. The Controller classes will initialize the Volley requests and the Database classes will process the data into Model entities and store them. Finally the Helper classes are responsible for various tasks: broadcasting, sending notifications, writing to files...
+
+## Note
+
+For the admin login info, please use username: `ad` and password `ad`.
+To check the data from Heroku, please use:
+
+- https://s3749795-hoang-android-asm2.herokuapp.com/api/zones for zones
+- https://s3749795-hoang-android-asm2.herokuapp.com/api/reports for reports
+- https://s3749795-hoang-android-asm2.herokuapp.com/api/users for users
+  Please check the backend to see the requests that you can use
