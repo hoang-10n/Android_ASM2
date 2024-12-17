@@ -94,7 +94,8 @@ There are some other classes that work in the backend. The Controller classes wi
 For the admin login info, please use username: `ad` and password `ad`.
 To check the data from Heroku, please use:
 
-- https://s3749795-hoang-android-asm2.herokuapp.com/api/zones for zones
-- https://s3749795-hoang-android-asm2.herokuapp.com/api/reports for reports
-- https://s3749795-hoang-android-asm2.herokuapp.com/api/users for users
-  Please check the backend to see the requests that you can use
+- https://s3749795-hoang-android-asm2.herokuapp.com/api/zones for zones.
+- https://s3749795-hoang-android-asm2.herokuapp.com/api/reports for reports.
+- https://s3749795-hoang-android-asm2.herokuapp.com/api/users for users.
+
+Please check the backend to see the requests that you can use
